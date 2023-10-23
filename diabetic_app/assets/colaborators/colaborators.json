@@ -1,0 +1,47 @@
+{
+  "participantes" :
+    {
+      "Responsables": [
+        {
+          "nombre": "Dr. Victor Hernandez Escalante"
+        }
+      ],
+      "Desarrolladores": [
+        {
+          "nombre": "César Augusto Gonzalez Garcia"
+        },
+        {
+          "nombre": "Jessica Guadalupe León Peraza"
+        },
+        {
+          "nombre": "Manuel Jesús Tello May"
+        },
+        {
+          "nombre": "Rodrigo Urtecho Quintal"
+        }
+      ],
+      "Colaboradores": [
+        {
+          "nombre": "Malinaly Cetz"
+        },
+        {
+          "nombre": "Leon Valencia"
+        },
+        {
+          "nombre": "Karen Vega"
+        },
+        {
+          "nombre": "Marian"
+        }
+      ],
+      "Consultores": [
+        {
+          "nombre": "Daniela Rosado"
+        },
+        {
+          "nombre": "Otro"
+        }
+
+      ]
+    }
+}

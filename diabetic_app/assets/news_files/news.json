@@ -1,0 +1,14 @@
+{
+  "noticias": [
+    {
+      "titulo": "Diabetes Tipo 1",
+      "imagen": "https://medlineplus.gov/images/DiabetesType1.jpg",
+      "sitio": "https://medlineplus.gov/spanish/diabetestype1.html"
+    },
+    {
+      "titulo": "La diabetes en las personas mayores",
+      "imagen": "https://www.nia.nih.gov/sites/default/files/2018-05/diabetes-older-adults-inline-compressed_0.jpg",
+      "sitio": "https://www.nia.nih.gov/espanol/diabetes-personas-mayores"
+    }
+  ]
+}

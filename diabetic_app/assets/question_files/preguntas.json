@@ -1,0 +1,89 @@
+{
+  "niveles": [
+    {
+      "preguntas": [
+        {
+          "texto": "¿Cada cuánto tiempo debo revisarme los pies?",
+          "respuestas": {
+            "correcta": "Todos los días",
+            "incorrectas": ["Solo cuando me lastimo", "Cuando vaya a la consulta"]
+          }
+        },
+        {
+          "texto": "¿Qué frutas puedo comer?",
+          "respuestas": {
+            "correcta": "Cualquier fruta con moderación",
+            "incorrectas": ["No debe comer frutas porque tienen mucha azúcar", "Solo frutas que tenga mucha agua (ej. Sandía)"]
+          }
+        },
+        {
+          "texto": "¿Solo el doctor puede revisarme mi azúcar en sangre?",
+          "respuestas": {
+            "correcta": "Verdadero",
+            "incorrectas": ["Falso"]
+          }
+        },
+        {
+          "texto": "¿Cuánto tiempo de ejercicio al día debería hacer por lo menos?",
+          "respuestas": {
+            "correcta": "30 min",
+            "incorrectas": ["60 min", "10 min"]
+          }
+        },
+        {
+          "texto": "¿Si no resisto 30 minutos de ejercicio seguido puedo dividirlos (3 veces 10 min, 2 veces 15 min)?",
+          "respuestas": {
+            "correcta": "Verdadero",
+            "incorrectas": ["Falso"]
+          }
+        },
+        {
+          "texto": "¿Sí tengo sed qué es mejor tomar?",
+          "respuestas": {
+            "correcta": "Agua",
+            "incorrectas": ["Jugo natural", "Refresco sin azúcar"]
+          }
+        }
+      ]
+    },
+    {
+      "preguntas": [
+        {
+          "texto": "¿La insulina que me da el doctor es como que la que produce mi cuerpo?",
+          "respuestas": {
+            "correcta": "Verdadero",
+            "incorrectas": ["Falso"]
+          }
+        },
+        {
+          "texto": "¿Si un día se me olvidó tomar mi pastilla qué debo hacer?",
+          "respuestas": {
+            "correcta": "Continuar con mi tratamiento como está indicado",
+            "incorrectas": ["Tomar el doble al día siguiente", "Ir a consultar de urgencia"]
+          }
+        },
+        {
+          "texto": "¿Tener el azúcar muy bajo también es malo? ",
+          "respuestas": {
+            "correcta": "Verdadero",
+            "incorrectas": ["Falso"]
+          }
+        },
+        {
+          "texto": "¿Si tengo diabetes y no he desayunado cuánto debo tener de azúcar?",
+          "respuestas": {
+            "correcta": "Menos de 130 mg/dL",
+            "incorrectas": ["Menos de 250 mg/dL", "Menos de 180 mg/dL"]
+          }
+        },
+        {
+          "texto": "¿La insulina puede afectar mi vista?",
+          "respuestas": {
+            "correcta": "Verdadero",
+            "incorrectas": ["Falso"]
+          }
+        }
+      ]
+    }
+  ]
+}

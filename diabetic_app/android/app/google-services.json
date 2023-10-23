@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "145570872061",
+    "project_id": "diabeticawareness2-c401a",
+    "storage_bucket": "diabeticawareness2-c401a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145570872061:android:14f11032f28563cd719c94",
+        "android_client_info": {
+          "package_name": "com.example.diabetic_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145570872061-tmt3cslj24q5sfq4huonsdipdsp7v3o5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy7ufSTLmj5f4Jbx8q3CGHlS37_wnLZCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145570872061-tmt3cslj24q5sfq4huonsdipdsp7v3o5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
