@@ -6,15 +6,14 @@ import 'package:diabetic_app/controllers/news_controller.dart';
 import 'package:diabetic_app/my_widgets/menu_button_widget.dart';
 import 'package:diabetic_app/controllers/quiz_controller.dart';
 
-class HomePage extends StatefulWidget{
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>{
-
+class _HomePageState extends State<HomePage> {
   final User? user = Auth().currentUser;
   List<NewsCard> news = [];
   NewsController newsController = NewsController();
@@ -26,25 +25,27 @@ class _HomePageState extends State<HomePage>{
   }
 
   Widget _title() {
-    return const Text('Diabetic App',
-      style: TextStyle(
-      fontSize: 26
-    ) ,); //DEBE MODIFICARSE CUANDO SE TENGA UN NOMBRE MÁS ADECUADO
+    return const Text(
+      'Diabetic App',
+      style: TextStyle(fontSize: 26),
+    ); //DEBE MODIFICARSE CUANDO SE TENGA UN NOMBRE MÁS ADECUADO
   }
 
   List<Widget> _buildNewsList() {
     List<Widget> widgets = [];
-    for(int i = 0; i < news.length; i++){
+    for (int i = 0; i < news.length; i++) {
       widgets.add(news[i]);
-      if(i != news.length - 1){
-        widgets.add(SizedBox(height: 20,));
+      if (i != news.length - 1) {
+        widgets.add(SizedBox(
+          height: 20,
+        ));
       }
     }
     return widgets;
   }
 
   @override
-    void initState() {
+  void initState() {
     super.initState();
     loadNews();
     loadProgress();
@@ -75,33 +76,30 @@ class _HomePageState extends State<HomePage>{
   Widget _noticeWidget() {
     bool logedIn = (user != null);
     return Center(
-            child: Card(
-              color: Colors.white54,
-              child: Padding(
-                padding: EdgeInsets.all(15),
-                child: Column(
-                  children: [
-                    Text(
-                      logedIn ? '¡Bienvenido de vuelta!' : 'No ha iniciado sesión o su sesión ha expirado.',
-                      style: TextStyle(
-                        fontSize: 20
-                      ),
-                    ),
-                    TextButton(
-                        onPressed: _closeNoticeWidget,
-                        child: Text(
-                          'Cerrar',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.grey
-                          ),
-                        ),
-                    )
-                  ],
-                ),
+      child: Card(
+        color: Colors.white54,
+        child: Padding(
+          padding: EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Text(
+                logedIn
+                    ? '¡Bienvenido de vuelta!'
+                    : 'No ha iniciado sesión o su sesión ha expirado.',
+                style: TextStyle(fontSize: 20),
               ),
-            ),
-          );
+              TextButton(
+                onPressed: _closeNoticeWidget,
+                child: Text(
+                  'Cerrar',
+                  style: TextStyle(fontSize: 20, color: Colors.grey),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -125,8 +123,7 @@ class _HomePageState extends State<HomePage>{
               fontSize: 26,
             ),
           ),
-          if(noticeVisible)
-            _noticeWidget(),
+          if (noticeVisible) _noticeWidget(),
           SizedBox(height: 20),
           // Add the newsWidgets using addAll
           ..._buildNewsList(),
@@ -134,5 +131,4 @@ class _HomePageState extends State<HomePage>{
       ),
     );
   }
-
 }
