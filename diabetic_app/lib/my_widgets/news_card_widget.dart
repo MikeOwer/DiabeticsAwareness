@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:diabetic_app/my_classes/news.dart';
+import 'package:diabetic_app/ProyectColors.dart';
 
 /*void main() {
   runApp(MyApp());
@@ -56,48 +57,51 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _launchURL,
-      child: Container(
-        width: 350, // Ancho deseado del card
-        height: 400,
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 3),
+    return Container(
+      width: 350, // Ancho deseado del card
+      height: 200,
+      //padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Card(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: BorderSide(width: 2, color: Theme.of(context).primaryColor)),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              width: 10,
             ),
-          ],
-        ),
-        child: Card(
-          color: Colors.grey[300],
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: 10,),
-              ListTile(
+            Container(
+              width: 100, // Ancho deseado del card
+              height: 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  newsInfo.imageUrl,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: ListTile(
                 title: Text(
                   newsInfo.title,
                   textScaleFactor: 1.5,
                 ),
               ),
-              SizedBox(height: 10,),
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    newsInfo.imageUrl,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+          ],
         ),
       ),
     );
