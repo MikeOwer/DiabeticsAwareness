@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _title() {
     return const Text(
-      'Diabetic App',
+      'Gluconexión',
       style: TextStyle(fontSize: 26),
     ); //DEBE MODIFICARSE CUANDO SE TENGA UN NOMBRE MÁS ADECUADO
   }

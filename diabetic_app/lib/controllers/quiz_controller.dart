@@ -23,23 +23,29 @@ class QuizController {
   QuizController._();
 
   static QuizController getInstance() {
-    if(_instance == null) {
+    if (_instance == null) {
       _instance = QuizController._();
     }
     return _instance!;
   }
 
-  void increaseStage(){
-    if(stage < 4){
+  void increaseStage() {
+    if (stage < 4) {
       this.stage++;
     }
   }
 
-  int getStage(){
+  int getStage() {
     return stage;
   }
+
   void resetQuiz() {
     this.stage = 0;
+  }
+
+  List<QuizQuestion> getLevelQuestionsCopy() {
+    //Getter de la lista de preguntas
+    return levelQuestionsCopy;
   }
 
   Future<void> readJSONFromFile(int level) async {
@@ -47,49 +53,59 @@ class QuizController {
       final String response = await rootBundle.loadString(questionsPath);
       final data = await json.decode(response);
 
-      List<dynamic> nivelesList = data['niveles'];
-      List<dynamic> questionsList = nivelesList[level-1]['preguntas'];
-      for(var question in questionsList){
-        questions.add(question['texto']);
-        correctOpts.add(question['respuestas']['correcta']);
-        incorrectOpts.add(
-            List<String>.from(question['respuestas']['incorrectas'])
-        );
+      List<dynamic> nivelesList = data['niveles']; //Lee los niveles diponibles
+      List<dynamic> questionsList = nivelesList[level - 1]
+          ['preguntas']; //Accede a las preguntas del nivel solicitado
+      for (var question in questionsList) {
+        questions.add(question['texto']); //Se añaden las preguntas
+        correctOpts.add(question['respuestas']
+            ['correcta']); //Se añade las respuestas correctas
+        incorrectOpts.add(List<String>.from(question['respuestas']
+            ['incorrectas'])); //Se añaden las respuestas incorrectas como lista
       }
       buildLevelQuestionsList();
-    } catch(e) {
+    } catch (e) {
       print('Exception catched: $e');
     }
   }
 
-  void buildLevelQuestionsList(){
+  void buildLevelQuestionsList() {
     try {
-      for(int i = 0; i < questions.length; i++){
-        levelQuestions.add(QuizQuestion(question: questions[i], correctOpt: correctOpts[i], incorrectOpts: incorrectOpts[i]));
+      for (int i = 0; i < questions.length; i++) {
+        levelQuestions.add(QuizQuestion(
+            question: questions[i],
+            correctOpt: correctOpts[i],
+            incorrectOpts: incorrectOpts[
+                i])); //Se generan las preguntas en el objeto QuizQuestion y se añaden a una lista
       }
-      levelQuestionsCopy = levelQuestions;
-    }catch (e){
+      levelQuestionsCopy =
+          levelQuestions; //Se asigna los valores de una lista de las preguntas a otra
+    } catch (e) {
       print("Exception in builLevelQuestionsList(): $e");
     }
   }
 
+  // Aquí se puede agregar si es aleatoria y no se tomen en cuenta las que ya pasaron
   QuizQuestion selectQuizQuestion() {
+    //Se selecciona la pregunta aleatoriamente
     QuizQuestion deliverableQuestion = QuizQuestion.empty();
 
     try {
-      if(levelQuestionsCopy.isNotEmpty){
+      if (levelQuestionsCopy.isNotEmpty) {
         var random = Random();
         int randomNum = random.nextInt(levelQuestionsCopy.length);
-        deliverableQuestion = levelQuestionsCopy[randomNum];
-        levelQuestionsCopy.removeAt(randomNum);
+        deliverableQuestion =
+            levelQuestionsCopy[randomNum]; //Se genera una pregunta aleatoria
+        levelQuestionsCopy.removeAt(
+            randomNum); //Se remueve la pregunta de la lista de opciones -- Esto hay que preguntarlo
       }
-    } catch(e) {
+    } catch (e) {
       print('Exception in selectQuizQuestion: $e');
     }
     return deliverableQuestion;
   }
 
-  void returnQuestion(QuizQuestion returnedQuestion){
+  void returnQuestion(QuizQuestion returnedQuestion) {
     this.levelQuestionsCopy.add(returnedQuestion);
   }
 
@@ -97,22 +113,18 @@ class QuizController {
     try {
       String path = await getProgressFilePath();
       File file = File(path);
-      if(await file.exists()) {
+      if (await file.exists()) {
         String response = await file.readAsString();
         final data = await json.decode(response);
 
-        Progress progress = Progress.constructor(
-            data['nivelMaxCompletado'],
-            data['nivelesSanos'],
-            parseDateString(data['ultimoInicio'])
-        );
+        Progress progress = Progress.constructor(data['nivelMaxCompletado'],
+            data['nivelesSanos'], parseDateString(data['ultimoInicio']));
         quizProgress = progress;
         compareDates();
       } else {
         updateProgressJSONFile();
         readProgressJSONFile();
       }
-
     } catch (e) {
       print('Exception catched: $e');
     }
@@ -139,7 +151,7 @@ class QuizController {
       "nivelesSanos": quizProgress.getHealthyLevels(),
       "ultimoInicio": fechaString
     };
-    await createProgressJSONFile(data);
+    await createProgressJSONFile(data); //Se sobrescribe el progreso actual
   }
 
   DateTime parseDateString(String date) {
@@ -163,11 +175,4 @@ class QuizController {
     quizProgress.updateLastLogin();
     updateProgressJSONFile();
   }
-
 }
-
-
-
-
-
-

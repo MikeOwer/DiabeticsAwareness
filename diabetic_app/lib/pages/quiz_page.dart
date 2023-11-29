@@ -178,19 +178,17 @@ class _QuizPageState extends State<QuizPage> {
 
   Widget _quizBackgroundLayout() {
     return Stack(
+      //Trabaja como un espacio para acomodar widgets
       children: [
         Positioned.fill(
           child: Image.asset(
             'assets/textures/campo.jpg',
             fit: BoxFit.cover, //Para rellenar todo el fondo de la actividad
-            //repeat: ImageRepeat.repeat,
-            //color: Colors.blue,
-            //colorBlendMode: BlendMode.plus,
           ),
         ),
         Positioned(
-          left: 100,
-          right: 100,
+          left: 125,
+          right: 125,
           bottom: 0,
           top: 0,
           child: Image.asset(
@@ -199,10 +197,31 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         Positioned(
-          right: 40,
+          left: 125,
+          right: 125,
           bottom: 0,
-          child: Container(child: Image.asset('assets/images/Iguana.png')),
+          top: 0,
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _buildListaDeBotones().reversed.toList(),
+            ),
+          ),
         ),
+        Positioned(
+          right: 60,
+          bottom: 0,
+          child: Container(
+              width: MediaQuery.of(context).size.width * 0.2,
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: Image.asset('assets/images/Iguana.png')),
+        ),
+        if (showCard && quizController.stage < 3)
+          QuestionCardWidget(pickedQuestion.question, optionButtons),
+        if (currentStage >= 3) CongratsCardWidget(level: this.level),
+        if (correctSelected) _correctGIF(),
+        if (incorrectSelected) _incorrectGIF(),
       ],
     );
     /*return GestureDetector(
@@ -231,5 +250,107 @@ class _QuizPageState extends State<QuizPage> {
         ],
       ),
     );*/
+  }
+
+  List<Widget> _buildListaDeBotones() {
+    List<Widget> buttonList = [];
+    //List<QuizQuestion> questionList = quizController.getLevelQuestionsCopy();
+
+    buttonList.add(
+      _buildPrimerElemento(),
+    );
+
+    for (int i = 1; i < 4; i++) {
+      buttonList.add(
+        Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.06,
+              width: 200,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  backgroundColor: Theme.of(context)
+                      .scaffoldBackgroundColor, //Cambio de los colores a blanco
+                ),
+                onPressed: () {
+                  _toggleCardVisibility();
+                },
+                child:
+                    Text('Pregunta ${i + 1}', style: TextStyle(fontSize: 24)),
+              ),
+            ),
+            Container(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              height: MediaQuery.of(context).size.height * 0.12,
+              width: 15,
+            ),
+          ],
+        ),
+      );
+    }
+
+    // Añade el último elemento de manera diferente
+    buttonList.add(
+      _buildUltimoElemento(),
+    );
+
+    return buttonList;
+  }
+
+  Widget _buildPrimerElemento() {
+    return Container(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.06,
+        width: 200,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+            ),
+          ),
+          onPressed: () {
+            _toggleCardVisibility();
+          },
+          child: Text(
+            'Pregunta 1',
+            style: TextStyle(fontSize: 24),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildUltimoElemento() {
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.06,
+          width: 200,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            ),
+            onPressed: () {
+              _toggleCardVisibility();
+            },
+            child: Text(
+              'Pregunta final',
+              style: TextStyle(fontSize: 24),
+            ),
+          ),
+        ),
+        Container(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          height: MediaQuery.of(context).size.height * 0.12,
+          width: 15,
+        ),
+      ],
+    );
   }
 }

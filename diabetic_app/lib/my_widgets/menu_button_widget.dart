@@ -8,16 +8,13 @@ import '../my_classes/auth.dart';
 class MenuButtonWidget extends StatefulWidget {
   @override
   State createState() => _MenuButtonWidgetState();
-
 }
 
-class _MenuButtonWidgetState extends State<MenuButtonWidget>{
+class _MenuButtonWidgetState extends State<MenuButtonWidget> {
   final User? user = Auth().currentUser;
-  void onPressed() {
+  void onPressed() {}
 
-  }
-
-  Widget menuLoginButton(BuildContext context){
+  Widget menuLoginButton(BuildContext context) {
     return GestureDetector(
       onTap: () => loginButtonPressed(context),
       child: Text('Iniciar Sesión'),
@@ -34,23 +31,21 @@ class _MenuButtonWidgetState extends State<MenuButtonWidget>{
   void quizButtonPressed(BuildContext context) {
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => QuizLobbyPage())
-    );
+        MaterialPageRoute(
+            builder: (context) =>
+                QuizLobbyPage()) //Manera de entrar a el quiz rápido
+        );
   }
   //Espacio para los demás métodos de acción de los botones restantes
 
   void loginButtonPressed(BuildContext context) {
     Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LoginPage())
-    );
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
   void configButtonPressed(BuildContext context) {
     Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ConfigPage())
-    );
+        context, MaterialPageRoute(builder: (context) => ConfigPage()));
   }
 
   @override
@@ -63,17 +58,30 @@ class _MenuButtonWidgetState extends State<MenuButtonWidget>{
             child: Text('Quiz'),
           ),
         ),
-        PopupMenuItem(child: Row(children: [
-          Text('Opción 1'),
-        ],),),
-        PopupMenuItem(child: Row(children: [
-          Text('Opción 2'),
-        ],),),
         PopupMenuItem(
-          child: user != null? menuProfileButton(context) : menuLoginButton(context),
+          child: Row(
+            children: [
+              Text('Opción 1'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          child: Row(
+            children: [
+              Text('Opción 2'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          child: user != null
+              ? menuProfileButton(context)
+              : menuLoginButton(context),
         ),
       ],
-      child: Icon(Icons.menu, size: 36,),
+      child: Icon(
+        Icons.menu,
+        size: 36,
+      ),
     );
   }
 }
