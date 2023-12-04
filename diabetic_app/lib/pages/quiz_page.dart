@@ -5,7 +5,7 @@ import 'package:diabetic_app/my_classes/quiz_question.dart';
 import 'package:diabetic_app/my_widgets/question_card_widget.dart';
 import 'package:diabetic_app/my_widgets/quiz_option_widget.dart';
 import 'package:diabetic_app/my_widgets/congrats_card_widget.dart';
-import 'package:diabetic_app/pages/Congrats_quiz_page.dart';
+import 'package:diabetic_app/pages/congrats_quiz_page.dart';
 import 'package:flutter/material.dart';
 import 'package:diabetic_app/controllers/quiz_controller.dart';
 
