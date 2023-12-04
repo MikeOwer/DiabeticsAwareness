@@ -30,8 +30,19 @@ class QuizController {
   }
 
   void increaseStage() {
-    if (stage < 4) {
+    //Se inncrementa el número de pregunta actual al responder bien una
+    if (quizProgress.getMaxLevel() < 2) {
+      // Limitando los primeros dos niveles
+      if (stage < 6) {
+        //Uno más para detectar un cambio del nivel
+        this.stage++;
+        this.quizProgress.increaseCurrentQuestion();
+        updateProgressJSONFile(); //Y sobreescribiendo el progreso
+      }
+    } else {
       this.stage++;
+      this.quizProgress.increaseCurrentQuestion();
+      updateProgressJSONFile();
     }
   }
 
@@ -41,6 +52,8 @@ class QuizController {
 
   void resetQuiz() {
     this.stage = 0;
+    this.quizProgress.currentQuestion = 0;
+    updateProgressJSONFile(); //Se reinicia a 0 el número de pregunta actual cuando pasa de nivel
   }
 
   List<QuizQuestion> getLevelQuestionsCopy() {
@@ -54,8 +67,9 @@ class QuizController {
       final data = await json.decode(response);
 
       List<dynamic> nivelesList = data['niveles']; //Lee los niveles diponibles
-      List<dynamic> questionsList = nivelesList[level - 1]
-          ['preguntas']; //Accede a las preguntas del nivel solicitado
+      List<dynamic> questionsList =
+          nivelesList[level] //Moví el -1 ----- cambio momentaneo
+              ['preguntas']; //Accede a las preguntas del nivel solicitado
       for (var question in questionsList) {
         questions.add(question['texto']); //Se añaden las preguntas
         correctOpts.add(question['respuestas']
@@ -117,8 +131,11 @@ class QuizController {
         String response = await file.readAsString();
         final data = await json.decode(response);
 
-        Progress progress = Progress.constructor(data['nivelMaxCompletado'],
-            data['nivelesSanos'], parseDateString(data['ultimoInicio']));
+        Progress progress = Progress.constructor(
+            data['nivelMaxCompletado'],
+            data['nivelesSanos'],
+            data['currentQuestion'],
+            parseDateString(data['ultimoInicio']));
         quizProgress = progress;
         compareDates();
       } else {
@@ -132,7 +149,7 @@ class QuizController {
 
   Future<String> getProgressFilePath() async {
     final directory = await getApplicationDocumentsDirectory();
-    return '${directory.path}/progreso.json';
+    return '${directory.path}/progress.json'; //Se llamaba progreso
   }
 
   Future<void> createProgressJSONFile(Map<String, dynamic> jsonData) async {
@@ -148,7 +165,8 @@ class QuizController {
     String fechaString = '${fecha.day}/${fecha.month}/${fecha.year}';
     Map<String, dynamic> data = {
       "nivelMaxCompletado": quizProgress.getMaxLevel(),
-      "nivelesSanos": quizProgress.getHealthyLevels(),
+      "nivelesSanos": quizProgress.getHealthyLevels(), //Esto no servirá pronto
+      "preguntaActual": quizProgress.getCurrentQuestion(),
       "ultimoInicio": fechaString
     };
     await createProgressJSONFile(data); //Se sobrescribe el progreso actual
