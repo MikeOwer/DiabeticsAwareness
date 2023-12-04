@@ -1,19 +1,21 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:diabetic_app/my_classes/quiz_question.dart';
 import 'package:diabetic_app/my_widgets/question_card_widget.dart';
 import 'package:diabetic_app/my_widgets/quiz_option_widget.dart';
 import 'package:diabetic_app/my_widgets/congrats_card_widget.dart';
+import 'package:diabetic_app/pages/Congrats_quiz_page.dart';
 import 'package:flutter/material.dart';
 import 'package:diabetic_app/controllers/quiz_controller.dart';
 
 class QuizPage extends StatefulWidget {
-  int level = 0;
+  //int level = 0;
 
   @override
-  _QuizPageState createState() => _QuizPageState(level: this.level);
+  _QuizPageState createState() => _QuizPageState();
 
-  QuizPage({required this.level});
+  QuizPage();
 }
 
 class _QuizPageState extends State<QuizPage> {
@@ -21,6 +23,7 @@ class _QuizPageState extends State<QuizPage> {
   QuizController quizController = QuizController.getInstance();
   QuizQuestion pickedQuestion = QuizQuestion.empty();
   List<QuizOptionWidget> optionButtons = [];
+  late StreamController<int> _stageController;
 
   int currentStage = 0;
 
@@ -29,16 +32,31 @@ class _QuizPageState extends State<QuizPage> {
   bool correctSelected = false;
   bool incorrectSelected = false;
 
-  _QuizPageState({required this.level});
+  _QuizPageState(); //Quitar el pedir niveles
 
   @override
   void initState() {
     super.initState();
+    _stageController = StreamController<int>();
+    this.level =
+        quizController.quizProgress.getMaxLevel(); //Se obtiene el nivel actual
+    this.currentStage = quizController.quizProgress
+        .getCurrentQuestion(); //Se obtiene el número de la pregunta actual
+
+    _stageController.stream.listen((stage) {
+      //Si cambia el stage a 5 se va a la otra pantalla
+      if (stage == 5 && quizController.quizProgress.getMaxLevel() < 1) {
+        //Limitación temporal de nivel 2
+        completeLevel();
+      }
+    });
+    print('Nivel: ${level}'); //Prueba del nivel
+    print('currentStage: ${currentStage}'); //Prueba de la pregunta
     loadQuiz(level);
   }
 
   void loadQuiz(int level) async {
-    await quizController.readJSONFromFile(level);
+    await quizController.readJSONFromFile(level); //Lee el JSON de las preguntas
     //questions = quizController.selectQuizQuestions(3);
     setState(() {
       gameStarted = true;
@@ -95,7 +113,10 @@ class _QuizPageState extends State<QuizPage> {
           setState(() {
             correctSelected = false;
             quizController.increaseStage();
-            currentStage = quizController.getStage();
+            currentStage = quizController
+                .getStage(); //Para que haga match con el stage del controller
+            _stageController.add(
+                currentStage); //Para avisar que cuando llegue a 5 cambie de nivel
           });
           pickQuestion();
         });
@@ -119,7 +140,7 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('¡Bienvenido al Quiz!'),
+        title: Text('Nivel ${level + 1}'),
       ),
       body: _quizBackgroundLayout(),
     );
@@ -217,39 +238,18 @@ class _QuizPageState extends State<QuizPage> {
               height: MediaQuery.of(context).size.height * 0.2,
               child: Image.asset('assets/images/Iguana.png')),
         ),
-        if (showCard && quizController.stage < 3)
+        if (showCard && quizController.getStage() < 5)
           QuestionCardWidget(pickedQuestion.question, optionButtons),
-        if (currentStage >= 3) CongratsCardWidget(level: this.level),
         if (correctSelected) _correctGIF(),
         if (incorrectSelected) _incorrectGIF(),
       ],
     );
-    /*return GestureDetector(
-      onTap: _toggleCardVisibility,
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              _grassBox(3),
-              _streetBox(),
-              _grassBox(2),
-              _streetBox(),
-              _grassBox(1),
-              _streetBox(),
-              _grassBox(0)
-            ],
-          ),
-          if(showCard && quizController.stage < 3)
-            QuestionCardWidget(pickedQuestion.question, optionButtons),
-          if(currentStage >= 3)
-            CongratsCardWidget(level: this.level),
-          if(correctSelected)
-            _correctGIF(),
-          if(incorrectSelected)
-            _incorrectGIF(),
-        ],
-      ),
-    );*/
+  }
+
+  void completeLevel() {
+    currentStage = 0;
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CongratsQuizPage()));
   }
 
   List<Widget> _buildListaDeBotones() {
