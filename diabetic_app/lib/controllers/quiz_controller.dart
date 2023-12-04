@@ -134,7 +134,7 @@ class QuizController {
         Progress progress = Progress.constructor(
             data['nivelMaxCompletado'],
             data['nivelesSanos'],
-            data['currentQuestion'],
+            data['preguntaActual'],
             parseDateString(data['ultimoInicio']));
         quizProgress = progress;
         compareDates();
@@ -149,7 +149,7 @@ class QuizController {
 
   Future<String> getProgressFilePath() async {
     final directory = await getApplicationDocumentsDirectory();
-    return '${directory.path}/progress.json'; //Se llamaba progreso
+    return '${directory.path}/progress_test.json'; //Se llamaba progreso --- Nombre provisional
   }
 
   Future<void> createProgressJSONFile(Map<String, dynamic> jsonData) async {
