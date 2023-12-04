@@ -6,43 +6,43 @@ class Progress {
   Progress();
 
   Progress.constructor(int max, int healthy, DateTime date){
-    this.maxLevel = max;
-    this.healthyLevels = healthy;
-    this.lastLogin = date;
+    maxLevel = max;
+    healthyLevels = healthy;
+    lastLogin = date;
   }
 
   int getMaxLevel(){
-    return this.maxLevel!;
+    return maxLevel;
   }
 
   int getHealthyLevels() {
-    return this.healthyLevels!;
+    return healthyLevels;
   }
 
   DateTime getLastLogin() {
-    return this.lastLogin!;
+    return lastLogin;
   }
 
   void increaseMaxLevel(){
-    if(this.maxLevel < 3){
-      this.maxLevel = this.maxLevel! +1 ;
+    if(maxLevel < 3){
+      maxLevel = maxLevel +1 ;
     }
   }
 
   void increaseHealthyLevels() {
-    if(this.healthyLevels < 3){
-      this.healthyLevels = this.healthyLevels! + 1;
+    if(healthyLevels < 3){
+      healthyLevels = healthyLevels + 1;
     }
   }
 
   void decreaseHealthyLevels(){
-    if(this.healthyLevels > 0){
-      this.healthyLevels = this.healthyLevels! - 1;
+    if(healthyLevels > 0){
+      healthyLevels = healthyLevels - 1;
     }
   }
 
   void updateLastLogin(){
-    this.lastLogin = DateTime.now();
+    lastLogin = DateTime.now();
   }
 
 

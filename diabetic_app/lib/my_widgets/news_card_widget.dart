@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:diabetic_app/my_classes/news.dart';
-import 'package:diabetic_app/ProyectColors.dart';
 
 /*void main() {
   runApp(MyApp());
@@ -45,7 +44,7 @@ class NewsCard extends StatelessWidget {
   final String imageUrl;
   final String websiteUrl;*/
 
-  NewsCard({required this.newsInfo});
+  const NewsCard({super.key, required this.newsInfo});
 
   void _launchURL() async {
     if (await canLaunch(newsInfo.siteUrl)) {
@@ -66,19 +65,19 @@ class NewsCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Card(
-        color: Theme.of(context).scaffoldBackgroundColor,
+        /*color: Theme.of(context).secundaryBackgroundColor*/ //Color de fondo de las tarjetas
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
-            side: BorderSide(width: 2, color: Theme.of(context).primaryColor)),
+            side: BorderSide(width: 6, color: const Color(0xFF002556))),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
-              width: 10,
+            const SizedBox(
+              width: 15,
             ),
-            Container(
-              width: 100, // Ancho deseado del card
-              height: 100,
+            SizedBox(
+              width: 120, // Ancho deseado del card
+              height: 120,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
@@ -87,8 +86,8 @@ class NewsCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              width: 10,
+            const SizedBox(
+              width: 15,
             ),
             Expanded(
               child: ListTile(
@@ -98,7 +97,7 @@ class NewsCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
           ],
@@ -107,3 +106,35 @@ class NewsCard extends StatelessWidget {
     );
   }
 }
+
+/*class QuizCard extends StatelessWidget {
+  final String title;
+  final VoidCallback onPressed;
+
+  QuizCard({required this.title, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 3.0,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 8.0),
+            ElevatedButton(
+              onPressed: onPressed,
+              child: Text('Presionar'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+*/

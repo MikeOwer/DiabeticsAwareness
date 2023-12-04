@@ -6,6 +6,6 @@ class QuizQuestion {
 
   QuizQuestion({required this.question, required this.correctOpt, required this.incorrectOpts});
 
-  QuizQuestion.empty() : this.incorrectOpts = [];
+  QuizQuestion.empty() : incorrectOpts = [];
 
 }

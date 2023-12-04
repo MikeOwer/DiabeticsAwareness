@@ -12,7 +12,7 @@ class CongratsCardWidget extends StatelessWidget{
   QuizController quizController = QuizController.getInstance();
   int level = 0;
 
-  CongratsCardWidget({required this.level});
+  CongratsCardWidget({super.key, required this.level});
 
   Future shareWithFacebook(int level) async {
     final text = '¡He completado con éxito el nivel $level del Quiz de DiabeticAwareness!.';
@@ -22,7 +22,7 @@ class CongratsCardWidget extends StatelessWidget{
 
   void updateProgress() {
     if((quizController.quizProgress.getMaxLevel() == quizController.quizProgress.getHealthyLevels()
-    && quizController.quizProgress.getMaxLevel() > this.level)
+    && quizController.quizProgress.getMaxLevel() > level)
     || quizController.quizProgress.getMaxLevel() == 0){
       quizController.quizProgress.increaseMaxLevel();
       quizController.quizProgress.increaseHealthyLevels();
@@ -36,14 +36,14 @@ class CongratsCardWidget extends StatelessWidget{
     updateProgress();
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => QuizLobbyPage())
+        MaterialPageRoute(builder: (context) => const QuizLobbyPage())
     );
   }
 
   Widget _facebookButton() {
     return ElevatedButton(
-      onPressed: () => shareWithFacebook(this.level),
-      child: Text(
+      onPressed: () => shareWithFacebook(level),
+      child: const Text(
           'Compartir mi logro'
       ),
     );
@@ -56,18 +56,18 @@ class CongratsCardWidget extends StatelessWidget{
         height: MediaQuery.of(context).size.height * 0.35,
         child: Card(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                Text("¡Felicidades!\n Completaste exitosamente el nivel.",
+                const Text("¡Felicidades!\n Completaste exitosamente el nivel.",
                   style: TextStyle(fontSize: 24),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 40,),
-                user != null? _facebookButton() : SizedBox(),
+                const SizedBox(height: 40,),
+                user != null? _facebookButton() : const SizedBox(),
                 GestureDetector(
                   onTap: () => goBackToQuizMenu(context),
-                  child: Text("Regresar al menú"),
+                  child: const Text("Regresar al menú"),
                 )
               ],
             ),

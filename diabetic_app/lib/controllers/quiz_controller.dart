@@ -23,15 +23,13 @@ class QuizController {
   QuizController._();
 
   static QuizController getInstance() {
-    if (_instance == null) {
-      _instance = QuizController._();
-    }
+    _instance ??= QuizController._();
     return _instance!;
   }
 
   void increaseStage() {
     if (stage < 4) {
-      this.stage++;
+      stage++;
     }
   }
 
@@ -40,7 +38,7 @@ class QuizController {
   }
 
   void resetQuiz() {
-    this.stage = 0;
+    stage = 0;
   }
 
   List<QuizQuestion> getLevelQuestionsCopy() {
@@ -106,7 +104,7 @@ class QuizController {
   }
 
   void returnQuestion(QuizQuestion returnedQuestion) {
-    this.levelQuestionsCopy.add(returnedQuestion);
+    levelQuestionsCopy.add(returnedQuestion);
   }
 
   Future<void> readProgressJSONFile() async {

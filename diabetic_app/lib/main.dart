@@ -20,9 +20,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: new ProyectColors()
+        primarySwatch: ProyectColors()
             .primaryMaterialColor, //Se utiliza el color creado para la aplicación
-        scaffoldBackgroundColor: new ProyectColors().backgroundColor,
+        scaffoldBackgroundColor: ProyectColors().backgroundColor,
+        secundaryBackgroundColor: ProyectColors().secundaryBackColor,
       ),
       home: const WidgetTree(),
     );

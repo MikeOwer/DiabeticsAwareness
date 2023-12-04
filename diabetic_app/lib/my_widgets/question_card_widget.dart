@@ -7,9 +7,9 @@ class QuestionCardWidget extends StatelessWidget{
   String question = '';
   List<QuizOptionWidget> answerOptions = [];
 
-  QuestionCardWidget(String question, List<QuizOptionWidget> buttons){
+  QuestionCardWidget(String question, List<QuizOptionWidget> buttons, {super.key}){
     this.question = question;
-    this.answerOptions = sortAnswerOptions(buttons);
+    answerOptions = sortAnswerOptions(buttons);
   }
 
   List<QuizOptionWidget> sortAnswerOptions(List<QuizOptionWidget> options){
@@ -38,11 +38,11 @@ class QuestionCardWidget extends StatelessWidget{
         height: MediaQuery.of(context).size.height * 0.45,
         child: Card(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
                 Text(question,
-                  style: TextStyle(fontSize: 24),
+                  style: const TextStyle(fontSize: 24),
                   textAlign: TextAlign.center,
                 ),
                 ListView.builder(
@@ -51,7 +51,7 @@ class QuestionCardWidget extends StatelessWidget{
                   itemBuilder: (BuildContext context, int index) {
                     return Column(
                       children: [
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
                         answerOptions[index],
                       ],
                     );
@@ -63,7 +63,6 @@ class QuestionCardWidget extends StatelessWidget{
         ),
       ),
     );
-    ;
   }
 
 }

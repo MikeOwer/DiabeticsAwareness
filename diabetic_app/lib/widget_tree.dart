@@ -16,7 +16,7 @@ class _WidgetTreeState extends State<WidgetTree> {
    return StreamBuilder(
        stream: Auth().authStateChanges,
        builder: (context, snapshot) {
-         return HomePage();
+         return const HomePage();
        },
    );
   }

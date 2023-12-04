@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:diabetic_app/my_classes/quiz_question.dart';
 import 'package:diabetic_app/my_widgets/question_card_widget.dart';
@@ -11,9 +10,9 @@ class QuizPage extends StatefulWidget {
   int level = 0;
 
   @override
-  _QuizPageState createState() => _QuizPageState(level: this.level);
+  _QuizPageState createState() => _QuizPageState(level: level);
 
-  QuizPage({required this.level});
+  QuizPage({super.key, required this.level});
 }
 
 class _QuizPageState extends State<QuizPage> {
@@ -49,7 +48,7 @@ class _QuizPageState extends State<QuizPage> {
   void pickQuestion() {
     try {
       pickedQuestion = quizController.selectQuizQuestion();
-      this.optionButtons = buildOptionButtons(
+      optionButtons = buildOptionButtons(
           pickedQuestion.correctOpt, pickedQuestion.incorrectOpts);
     } catch (e) {
       print('Exception on pickQuestion: $e');
@@ -84,14 +83,14 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void optionSelected(bool isCorrect) {
-    Future.delayed(Duration(milliseconds: 600), () {
+    Future.delayed(const Duration(milliseconds: 600), () {
       _toggleCardVisibility();
       if (isCorrect) {
         //Ejecución de la opción correcta
         setState(() {
           correctSelected = true;
         });
-        Future.delayed(Duration(milliseconds: 2000), () {
+        Future.delayed(const Duration(milliseconds: 2000), () {
           setState(() {
             correctSelected = false;
             quizController.increaseStage();
@@ -104,7 +103,7 @@ class _QuizPageState extends State<QuizPage> {
         setState(() {
           incorrectSelected = true;
         });
-        Future.delayed(Duration(milliseconds: 2000), () {
+        Future.delayed(const Duration(milliseconds: 2000), () {
           setState(() {
             incorrectSelected = false;
           });
@@ -152,7 +151,7 @@ class _QuizPageState extends State<QuizPage> {
   Widget _iguana(int whenToAppear) {
     Widget object;
     if (whenToAppear == quizController.stage) {
-      object = SizedBox(
+      object = const SizedBox(
         height: 50,
         width: 50,
         child: Image(
@@ -160,7 +159,7 @@ class _QuizPageState extends State<QuizPage> {
         ),
       );
     } else {
-      object = SizedBox();
+      object = const SizedBox();
     }
     return object;
   }
@@ -212,14 +211,14 @@ class _QuizPageState extends State<QuizPage> {
         Positioned(
           right: 60,
           bottom: 0,
-          child: Container(
+          child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
               height: MediaQuery.of(context).size.height * 0.2,
               child: Image.asset('assets/images/Iguana.png')),
         ),
         if (showCard && quizController.stage < 3)
           QuestionCardWidget(pickedQuestion.question, optionButtons),
-        if (currentStage >= 3) CongratsCardWidget(level: this.level),
+        if (currentStage >= 3) CongratsCardWidget(level: level),
         if (correctSelected) _correctGIF(),
         if (incorrectSelected) _incorrectGIF(),
       ],
@@ -279,7 +278,7 @@ class _QuizPageState extends State<QuizPage> {
                   _toggleCardVisibility();
                 },
                 child:
-                    Text('Pregunta ${i + 1}', style: TextStyle(fontSize: 24)),
+                    Text('Pregunta ${i + 1}', style: const TextStyle(fontSize: 24)),
               ),
             ),
             Container(
@@ -314,7 +313,7 @@ class _QuizPageState extends State<QuizPage> {
           onPressed: () {
             _toggleCardVisibility();
           },
-          child: Text(
+          child: const Text(
             'Pregunta 1',
             style: TextStyle(fontSize: 24),
           ),
@@ -339,7 +338,7 @@ class _QuizPageState extends State<QuizPage> {
             onPressed: () {
               _toggleCardVisibility();
             },
-            child: Text(
+            child: const Text(
               'Pregunta final',
               style: TextStyle(fontSize: 24),
             ),
