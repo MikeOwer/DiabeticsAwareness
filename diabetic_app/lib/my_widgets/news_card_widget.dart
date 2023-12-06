@@ -57,15 +57,15 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350, // Ancho deseado del card
-      height: 200,
+      width: 300, // Ancho deseado del card
+      height: 170,
       //padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Card(
-        /*color: Theme.of(context).secundaryBackgroundColor*/ //Color de fondo de las tarjetas
+        color: Colors.white, //Color de fondo de las tarjetas
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: BorderSide(width: 6, color: const Color(0xFF002556))),
@@ -87,18 +87,23 @@ class NewsCard extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              width: 15,
+              width: 5,
             ),
             Expanded(
               child: ListTile(
                 title: Text(
                   newsInfo.title,
                   textScaleFactor: 1.5,
+                  style: TextStyle(
+                    //fontFamily: 'Montserrat-Black.ttf',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15.0,
+                  ),
                 ),
               ),
             ),
             const SizedBox(
-              width: 10,
+              width: 5,
             ),
           ],
         ),

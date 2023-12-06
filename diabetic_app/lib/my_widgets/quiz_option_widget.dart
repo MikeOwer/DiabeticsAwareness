@@ -41,13 +41,14 @@ class _QuizOptionWidgetState extends State<QuizOptionWidget> {
       style: ElevatedButton.styleFrom(
         backgroundColor: isPressed ? widget.changeColor : widget.baseColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+            borderRadius: BorderRadius.circular(20),
+            side: BorderSide(width: 6, color: const Color(0xFF002556))),
       ),
       child: Container(
-        width: 300,
-        height: 50,
+        width: 350,
+        height: 70,
         alignment: Alignment.center,
+        //color: Colors.white,
         child: Text(
           widget.text,
           style: const TextStyle(fontSize: 20, color: Colors.black),

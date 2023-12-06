@@ -1,4 +1,3 @@
-
 import 'package:diabetic_app/my_classes/quiz_question.dart';
 import 'package:diabetic_app/my_widgets/question_card_widget.dart';
 import 'package:diabetic_app/my_widgets/quiz_option_widget.dart';
@@ -121,6 +120,7 @@ class _QuizPageState extends State<QuizPage> {
         title: const Text('¡Bienvenido al Quiz!'),
       ),
       body: _quizBackgroundLayout(),
+      backgroundColor: Color(0xFF002556),
     );
   }
 
@@ -277,8 +277,8 @@ class _QuizPageState extends State<QuizPage> {
                 onPressed: () {
                   _toggleCardVisibility();
                 },
-                child:
-                    Text('Pregunta ${i + 1}', style: const TextStyle(fontSize: 24)),
+                child: Text('Pregunta ${i + 1}',
+                    style: const TextStyle(fontSize: 24)),
               ),
             ),
             Container(
@@ -306,6 +306,7 @@ class _QuizPageState extends State<QuizPage> {
         width: 200,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0xFF002556),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50.0),
             ),
@@ -315,7 +316,7 @@ class _QuizPageState extends State<QuizPage> {
           },
           child: const Text(
             'Pregunta 1',
-            style: TextStyle(fontSize: 24),
+            style: TextStyle(fontSize: 24, color: Colors.white),
           ),
         ),
       ),
@@ -340,7 +341,9 @@ class _QuizPageState extends State<QuizPage> {
             },
             child: const Text(
               'Pregunta final',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(
+                fontSize: 24, /*color: Colors.white*/
+              ),
             ),
           ),
         ),

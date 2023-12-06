@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Montserrat-SemiBold.ttf',
         primarySwatch: ProyectColors()
             .primaryMaterialColor, //Se utiliza el color creado para la aplicación
         scaffoldBackgroundColor: ProyectColors().backgroundColor,
