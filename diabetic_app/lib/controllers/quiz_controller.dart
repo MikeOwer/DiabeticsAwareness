@@ -149,7 +149,7 @@ class QuizController {
 
   Future<String> getProgressFilePath() async {
     final directory = await getApplicationDocumentsDirectory();
-    return '${directory.path}/progress_test.json'; //Se llamaba progreso --- Nombre provisional
+    return '${directory.path}/progress2_test.json'; //Se llamaba progreso --- Nombre provisional
   }
 
   Future<void> createProgressJSONFile(Map<String, dynamic> jsonData) async {

@@ -141,49 +141,20 @@ class _QuizPageState extends State<QuizPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Nivel ${level + 1}'),
+        automaticallyImplyLeading: false,
+        // Agregar tu propio botón de retroceso
+        actions: [
+          IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              // Navegar hacia atrás
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+          ),
+        ],
       ),
       body: _quizBackgroundLayout(),
     );
-  }
-
-  Widget _streetBox() {
-    return Expanded(
-      flex: 2,
-      child: Container(
-        color: Colors.grey,
-      ),
-    );
-  }
-
-  Widget _grassBox(int whenToAppear) {
-    return Expanded(
-      flex: 2,
-      child: Container(
-        color: Colors.green,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _iguana(whenToAppear),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _iguana(int whenToAppear) {
-    Widget object;
-    if (whenToAppear == quizController.stage) {
-      object = SizedBox(
-        height: 50,
-        width: 50,
-        child: Image(
-          image: AssetImage("assets/images/iguana.jpg"),
-        ),
-      );
-    } else {
-      object = SizedBox();
-    }
-    return object;
   }
 
   Widget _correctGIF() {
@@ -231,13 +202,19 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         Positioned(
+          right: 0,
+          child: Column(
+            children: buildTolokList().reversed.toList(),
+          ),
+        ),
+        /*Positioned(
           right: 60,
           bottom: 0,
           child: Container(
               width: MediaQuery.of(context).size.width * 0.2,
               height: MediaQuery.of(context).size.height * 0.2,
               child: Image.asset('assets/images/Iguana.png')),
-        ),
+        ),*/
         if (showCard && quizController.getStage() < 5)
           QuestionCardWidget(pickedQuestion.question, optionButtons),
         if (correctSelected) _correctGIF(),
@@ -252,6 +229,33 @@ class _QuizPageState extends State<QuizPage> {
         context, MaterialPageRoute(builder: (context) => CongratsQuizPage()));
   }
 
+  List<Widget> buildTolokList() {
+    List<Widget> tolokList = [];
+
+    for (int i = 0; i < 5; i++) {
+      //Modificar lo del tolok
+      tolokList.add(
+        Container(
+          //color: Colors.red,
+          child: SizedBox(
+            width: 160,
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.2,
+              height: MediaQuery.of(context).size.height * 0.185,
+              //decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+              alignment: Alignment.centerLeft,
+              child: quizController.quizProgress.currentQuestion == i
+                  ? Image.asset('assets/images/Tolok.png')
+                  : null,
+            ),
+          ),
+        ),
+      );
+    }
+
+    return tolokList;
+  }
+
   List<Widget> _buildListaDeBotones() {
     List<Widget> buttonList = [];
     //List<QuizQuestion> questionList = quizController.getLevelQuestionsCopy();
@@ -260,7 +264,7 @@ class _QuizPageState extends State<QuizPage> {
       _buildPrimerElemento(),
     );
 
-    for (int i = 1; i < 4; i++) {
+    for (int i = 1; i < 5; i++) {
       buttonList.add(
         Column(
           children: [
@@ -272,18 +276,22 @@ class _QuizPageState extends State<QuizPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
-                  backgroundColor: Theme.of(context)
-                      .scaffoldBackgroundColor, //Cambio de los colores a blanco
+                  backgroundColor: setButtonColor(
+                      quizController.quizProgress.currentQuestion,
+                      i), //Cambio de los colores a blanco
+                  disabledBackgroundColor: Colors.white,
                 ),
-                onPressed: () {
-                  _toggleCardVisibility();
-                },
-                child:
-                    Text('Pregunta ${i + 1}', style: TextStyle(fontSize: 24)),
+                //Se desabilita el widget si el botón es mayor a la pregunta actual
+                onPressed: i > quizController.quizProgress.currentQuestion
+                    ? null
+                    : () => _toggleCardVisibility(),
+                child: setTextButton(
+                    quizController.quizProgress.currentQuestion, i),
               ),
             ),
             Container(
-              color: Theme.of(context).scaffoldBackgroundColor,
+              color: setButtonColor(
+                  quizController.quizProgress.currentQuestion, i),
               height: MediaQuery.of(context).size.height * 0.12,
               width: 15,
             ),
@@ -291,12 +299,6 @@ class _QuizPageState extends State<QuizPage> {
         ),
       );
     }
-
-    // Añade el último elemento de manera diferente
-    buttonList.add(
-      _buildUltimoElemento(),
-    );
-
     return buttonList;
   }
 
@@ -323,34 +325,19 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 
-  Widget _buildUltimoElemento() {
-    return Column(
-      children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.06,
-          width: 200,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50.0),
-              ),
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            ),
-            onPressed: () {
-              _toggleCardVisibility();
-            },
-            child: Text(
-              'Pregunta final',
-              style: TextStyle(fontSize: 24),
-            ),
-          ),
-        ),
-        Container(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          height: MediaQuery.of(context).size.height * 0.12,
-          width: 15,
-        ),
-      ],
-    );
+  Color setButtonColor(int numQuestion, int numButton) {
+    if (numButton <= numQuestion) {
+      return Theme.of(context).primaryColor;
+    }
+    return Colors.white;
+  }
+
+  Text setTextButton(int numQuestion, int numButton) {
+    if (numButton <= numQuestion) {
+      return Text('Pregunta ${numButton + 1}',
+          style: TextStyle(fontSize: 24, color: Colors.white));
+    }
+    return Text('Pregunta ${numButton + 1}',
+        style: TextStyle(fontSize: 24, color: Colors.black));
   }
 }
