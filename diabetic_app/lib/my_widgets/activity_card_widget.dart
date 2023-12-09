@@ -45,7 +45,7 @@ class ActivityCard extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 20.0),
+                        margin: const EdgeInsets.only(top: 20.0),
                         height: 120.0, // Establece la altura deseada
                         child: const ListTile(
                           title: Text(
@@ -90,6 +90,25 @@ class ActivityCard extends StatelessWidget {
         ),
         const SizedBox(
           height: 100,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Noticias',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25.0,
+                ),
+              ),
+              SizedBox(width: 15.0), // Espaciado entre el texto y el icono
+              Icon(
+                Icons.arrow_downward,
+                color: Colors.black,
+                size: 35,
+              ),
+              SizedBox(height: 8.0), // Espaciado entre el icono y el texto
+            ],
+          ),
         )
       ],
     );

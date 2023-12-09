@@ -119,6 +119,7 @@ class NewsCard extends StatelessWidget {
                         style: TextStyle(
                           color: Color(0xFF002556),
                           fontFamily: 'Montserrat-SemiBold.ttf',
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       Icon(
@@ -142,35 +143,3 @@ class NewsCard extends StatelessWidget {
     );
   }
 }
-
-/*class QuizCard extends StatelessWidget {
-  final String title;
-  final VoidCallback onPressed;
-
-  QuizCard({required this.title, required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 3.0,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8.0),
-            ElevatedButton(
-              onPressed: onPressed,
-              child: Text('Presionar'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-*/

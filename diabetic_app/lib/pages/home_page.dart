@@ -143,8 +143,9 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           const Text(
             '¿Sabías qué?',
+            textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 26,
+              fontSize: 28,
             ),
           ),
           if (noticeVisible) _noticeWidget(),
