@@ -90,16 +90,47 @@ class NewsCard extends StatelessWidget {
               width: 5,
             ),
             Expanded(
-              child: ListTile(
-                title: Text(
-                  newsInfo.title,
-                  textScaleFactor: 1.5,
-                  style: TextStyle(
-                    //fontFamily: 'Montserrat-Black.ttf',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0,
+              child: Column(
+                children: [
+                  Container(
+                    height: 120.0, // Establece la altura deseada
+                    child: ListTile(
+                      title: Text(
+                        newsInfo.title,
+                        maxLines:
+                            3, // Define el número máximo de líneas que se mostrarán
+                        overflow:
+                            TextOverflow.ellipsis, // Agrega puntos suspensivos
+                        textAlign: TextAlign.center,
+                        textScaleFactor: 1.5,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const Row(
+                    //el lenguaje pide ponerle const
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        "Más información",
+                        style: TextStyle(
+                          color: Color(0xFF002556),
+                          fontFamily: 'Montserrat-SemiBold.ttf',
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Color(0xFF002556),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      )
+                    ],
+                  ),
+                ],
               ),
             ),
             const SizedBox(

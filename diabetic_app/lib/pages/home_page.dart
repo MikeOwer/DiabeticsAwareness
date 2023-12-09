@@ -1,3 +1,4 @@
+import 'package:diabetic_app/my_widgets/activity_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diabetic_app/my_classes/auth.dart';
@@ -45,6 +46,7 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _buildNewsList() {
     List<Widget> widgets = [];
+    widgets.add(const ActivityCard());
     for (int i = 0; i < news.length; i++) {
       widgets.add(news[i]);
       if (i != news.length - 1) {
@@ -52,6 +54,15 @@ class _HomePageState extends State<HomePage> {
           height: 20,
         ));
       }
+    }
+    return widgets;
+  }
+
+//Cambiar el codigo, cuando haya una lista de actividades
+  List<Widget> _buildActivityList() {
+    List<Widget> widgets = [];
+    for (int i = 0; i < 1; i++) {
+      widgets.add(const ActivityCard());
     }
     return widgets;
   }
