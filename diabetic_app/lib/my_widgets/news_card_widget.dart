@@ -55,53 +55,66 @@ class NewsCard extends StatelessWidget {
     }
   }
 
+  Future<void> _launchUrl() async {
+    Uri url = Uri.parse(newsInfo.siteUrl);
+    if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 350, // Ancho deseado del card
-      height: 200,
-      //padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Card(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-            side: BorderSide(width: 2, color: Theme.of(context).primaryColor)),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              width: 10,
-            ),
-            Container(
-              width: 100, // Ancho deseado del card
-              height: 100,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  newsInfo.imageUrl,
-                  fit: BoxFit.contain,
+    return GestureDetector(
+      onTap: () {
+        _launchUrl();
+      },
+      child: Container(
+        width: 350, // Ancho deseado del card
+        height: 200,
+        //padding: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Card(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side:
+                  BorderSide(width: 2, color: Theme.of(context).primaryColor)),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Container(
+                width: 100, // Ancho deseado del card
+                height: 100,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(
+                    newsInfo.imageUrl,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: ListTile(
-                title: Text(
-                  newsInfo.title,
-                  textScaleFactor: 1.5,
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: ListTile(
+                  title: Text(
+                    newsInfo.title,
+                    textScaleFactor: 1.5,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-          ],
+              SizedBox(
+                width: 10,
+              ),
+            ],
+          ),
         ),
       ),
     );
