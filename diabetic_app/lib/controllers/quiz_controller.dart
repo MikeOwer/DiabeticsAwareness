@@ -17,6 +17,7 @@ class QuizController {
   List<QuizQuestion> levelQuestionsCopy = [];
   String questionsPath = 'assets/question_files/preguntas.json';
   Progress quizProgress = Progress();
+  List<String> completedQuestions = [];
 
   int stage = 0;
 
@@ -108,10 +109,25 @@ class QuizController {
       if (levelQuestionsCopy.isNotEmpty) {
         var random = Random();
         int randomNum = random.nextInt(levelQuestionsCopy.length);
-        deliverableQuestion =
-            levelQuestionsCopy[randomNum]; //Se genera una pregunta aleatoria
-        levelQuestionsCopy.removeAt(
-            randomNum); //Se remueve la pregunta de la lista de opciones -- Esto hay que preguntarlo
+        for (int i = 0; i < levelQuestionsCopy.length; i++) {
+          if (completedQuestions.length == levelQuestionsCopy.length - 1) {
+            completedQuestions.clear();
+          }
+          //Solo funcionaría en los primeros dos niveles
+          if (!completedQuestions
+              .contains(levelQuestionsCopy[randomNum].question)) {
+            deliverableQuestion = levelQuestionsCopy[
+                randomNum]; //Se genera una pregunta aleatoria
+            //levelQuestionsCopy.removeAt(
+            //  randomNum); //Se remueve la pregunta de la lista de opciones -- Esto hay que preguntarlo
+            completedQuestions.add(levelQuestionsCopy[randomNum].question);
+            print('Preguntas hechas: ${completedQuestions.length}');
+            print('Preguntas totales: ${levelQuestionsCopy.length}');
+            break;
+          } else {
+            randomNum = random.nextInt(levelQuestionsCopy.length);
+          }
+        }
       }
     } catch (e) {
       print('Exception in selectQuizQuestion: $e');
@@ -149,7 +165,7 @@ class QuizController {
 
   Future<String> getProgressFilePath() async {
     final directory = await getApplicationDocumentsDirectory();
-    return '${directory.path}/progress2_test.json'; //Se llamaba progreso --- Nombre provisional
+    return '${directory.path}/progress4_test.json'; //Se llamaba progreso --- Nombre provisional
   }
 
   Future<void> createProgressJSONFile(Map<String, dynamic> jsonData) async {
