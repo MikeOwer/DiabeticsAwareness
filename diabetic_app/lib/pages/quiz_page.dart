@@ -1,3 +1,4 @@
+
 import 'dart:async';
 import 'dart:math';
 
@@ -67,7 +68,7 @@ class _QuizPageState extends State<QuizPage> {
   void pickQuestion() {
     try {
       pickedQuestion = quizController.selectQuizQuestion();
-      this.optionButtons = buildOptionButtons(
+      optionButtons = buildOptionButtons(
           pickedQuestion.correctOpt, pickedQuestion.incorrectOpts);
     } catch (e) {
       print('Exception on pickQuestion: $e');
@@ -102,14 +103,14 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void optionSelected(bool isCorrect) {
-    Future.delayed(Duration(milliseconds: 600), () {
+    Future.delayed(const Duration(milliseconds: 600), () {
       _toggleCardVisibility();
       if (isCorrect) {
         //Ejecución de la opción correcta
         setState(() {
           correctSelected = true;
         });
-        Future.delayed(Duration(milliseconds: 2000), () {
+        Future.delayed(const Duration(milliseconds: 2000), () {
           setState(() {
             correctSelected = false;
             quizController.increaseStage();
@@ -125,7 +126,7 @@ class _QuizPageState extends State<QuizPage> {
         setState(() {
           incorrectSelected = true;
         });
-        Future.delayed(Duration(milliseconds: 2000), () {
+        Future.delayed(const Duration(milliseconds: 2000), () {
           setState(() {
             incorrectSelected = false;
           });
@@ -154,6 +155,7 @@ class _QuizPageState extends State<QuizPage> {
         ],
       ),
       body: _quizBackgroundLayout(),
+      backgroundColor: Color(0xFF002556),
     );
   }
 
@@ -210,7 +212,7 @@ class _QuizPageState extends State<QuizPage> {
         /*Positioned(
           right: 60,
           bottom: 0,
-          child: Container(
+          child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
               height: MediaQuery.of(context).size.height * 0.2,
               child: Image.asset('assets/images/Iguana.png')),
@@ -309,6 +311,7 @@ class _QuizPageState extends State<QuizPage> {
         width: 200,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0xFF002556),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50.0),
             ),
@@ -316,9 +319,9 @@ class _QuizPageState extends State<QuizPage> {
           onPressed: () {
             _toggleCardVisibility();
           },
-          child: Text(
+          child: const Text(
             'Pregunta 1',
-            style: TextStyle(fontSize: 24),
+            style: TextStyle(fontSize: 24, color: Colors.white),
           ),
         ),
       ),

@@ -11,7 +11,7 @@ class CongratsCardWidget extends StatelessWidget {
   QuizController quizController = QuizController.getInstance();
   int level = 0;
 
-  CongratsCardWidget({required this.level});
+  CongratsCardWidget({super.key, required this.level});
 
   Future shareWithFacebook(int level) async {
     final text =
@@ -28,45 +28,66 @@ class CongratsCardWidget extends StatelessWidget {
 
   void goBackToQuizMenu(BuildContext context) {
     updateProgress();
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => QuizLobbyPage()));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const QuizLobbyPage()));
   }
 
   Widget _facebookButton() {
     return ElevatedButton(
-      onPressed: () => shareWithFacebook(this.level),
-      child: Text('Compartir mi logro'),
+      onPressed: () => shareWithFacebook(level),
+      child: const Text('Compartir mi logro'),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.35,
-        child: Card(
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              children: [
-                Text(
-                  "¡Felicidades!\n Completaste exitosamente el nivel.",
-                  style: TextStyle(fontSize: 24),
-                  textAlign: TextAlign.center,
+        child: SizedBox(
+      height: MediaQuery.of(context).size.height * 0.85,
+      child: Card(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: const BorderSide(width: 10, color: Color(0xFF002556))),
+        child: const Padding(
+          padding: EdgeInsets.only(top: 70),
+          child: Column(
+            children: [
+              Text(
+                "¡Felicidades!\n Completaste exitosamente el nivel.",
+                style: TextStyle(
+                  fontSize: 35,
+                  color: Color(0xFF002556),
                 ),
-                SizedBox(
-                  height: 40,
-                ),
-                user != null ? _facebookButton() : SizedBox(),
-                GestureDetector(
-                  onTap: () => goBackToQuizMenu(context),
-                  child: Text("Regresar al menú"),
-                )
-              ],
-            ),
+                textAlign: TextAlign.center,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.check_circle,
+                    size: 60,
+                    color: Color(
+                        0xFF002556), // Puedes cambiar el color según tus preferencias
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "¡Nivel 2 desbloqueado!",
+                    style: TextStyle(
+                      fontSize: 35,
+                      color: Color(0xFF002556),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
-    );
+    ));
   }
 }

@@ -18,7 +18,7 @@ class Progress {
   }
 
   int getHealthyLevels() {
-    return this.healthyLevels!;
+    return healthyLevels;
   }
 
   int getCurrentQuestion() {
@@ -26,7 +26,7 @@ class Progress {
   }
 
   DateTime getLastLogin() {
-    return this.lastLogin!;
+    return lastLogin;
   }
 
   void increaseMaxLevel() {

@@ -27,7 +27,7 @@ class UserModel {
   }
 
   String getId() {
-    return this.id;
+    return id;
   }
 
   void setId(String id) {
@@ -35,7 +35,7 @@ class UserModel {
   }
 
   String getNames() {
-    return this.names;
+    return names;
   }
 
   void setNames(String names) {
@@ -43,23 +43,23 @@ class UserModel {
   }
 
   String getLastNameF() {
-    return this.lastNameF;
+    return lastNameF;
   }
 
   void setLastNameF(String lastName) {
-    this.lastNameF = lastName;
+    lastNameF = lastName;
   }
 
   String getLasNameM() {
-    return this.lastNameM;
+    return lastNameM;
   }
 
   void setLastNameM(String lastName) {
-    this.lastNameM = lastName;
+    lastNameM = lastName;
   }
 
   String getEmail() {
-    return this.email ?? '';
+    return email ?? '';
   }
 
   void setEmail(String? email) {
@@ -67,7 +67,7 @@ class UserModel {
   }
 
   String getPhoneNo() {
-    return this.phoneNo;
+    return phoneNo;
   }
 
   void setPhoneNo(String phoneNo) {
@@ -75,7 +75,7 @@ class UserModel {
   }
 
   DateTime getBirthday() {
-    return this.birthday;
+    return birthday;
   }
 
   void setBirthday(DateTime birthday) {
@@ -83,12 +83,12 @@ class UserModel {
   }
 
   String getBirthdayString() {
-    String dateString = '${this.birthday.day}/${this.birthday.month}/${this.birthday.year}';
+    String dateString = '${birthday.day}/${birthday.month}/${birthday.year}';
     return dateString;
   }
 
   String getGender() {
-    return this.gender;
+    return gender;
   }
 
   void setGender(String gender) {
@@ -98,7 +98,7 @@ class UserModel {
   }
 
   String getPostalCode() {
-    return this.postalCode;
+    return postalCode;
   }
 
   void setPostalCode(String postalCode) {

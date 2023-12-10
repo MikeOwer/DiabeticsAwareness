@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   bool passwordVisible = true;
   
   LoginController loginController = LoginController();
-  Map _userObj = {};
+  final Map _userObj = {};
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
       );
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomePage())
+        MaterialPageRoute(builder: (context) => const HomePage())
       );
     } on FirebaseAuthException catch (e) {
       if(loginController.userNotFound(e.message)){
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
       await Auth().signInWithFacebook();
       Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage())
+          MaterialPageRoute(builder: (context) => const HomePage())
       );
     } on FirebaseAuthException catch (e,s) {
       print('Error $e, Stacktrace:$s');
@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
           labelText: title,
           hintText: 'Contraseña',
           helperText: isLogin? '':'Mínimo 6 caracteres',
-          helperStyle: TextStyle(color: Colors.blueGrey),
+          helperStyle: const TextStyle(color: Colors.blueGrey),
           suffixIcon: IconButton(
             icon: Icon(passwordVisible
                 ? Icons.visibility
@@ -180,20 +180,20 @@ class _LoginPageState extends State<LoginPage> {
   Widget _loginWithFacebookButton(){
     return ElevatedButton(
         onPressed: signInWithFacebook,
-        child: Text('Inicia Sesión con Facebook'),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.blue,
         ),
+        child: const Text('Inicia Sesión con Facebook'),
     );
   }
 
   Widget _loginWithGoogleButton(){
     return ElevatedButton(
         onPressed: signInWithGoogle,
-        child: Text('Inicia Sesión con Google'),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.orangeAccent,
         ),
+        child: const Text('Inicia Sesión con Google'),
     );
   }
 

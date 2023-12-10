@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:diabetic_app/controllers/quiz_controller.dart';
 import 'package:flutter/material.dart';
 
 class QuizOptionWidget extends StatefulWidget {
@@ -9,15 +6,19 @@ class QuizOptionWidget extends StatefulWidget {
   bool isCorrect;
   final Function onTapFn;
 
-  final Color baseColor = Color(0xFFE0E0E0);
+  final Color baseColor = const Color(0xFFE0E0E0);
   Color changeColor;
 
-  QuizOptionWidget({required this.text, required this.isCorrect, required this.onTapFn})
-      : changeColor = isCorrect ? Colors.lightGreenAccent :  Colors.redAccent;
+  QuizOptionWidget(
+      {super.key,
+      required this.text,
+      required this.isCorrect,
+      required this.onTapFn})
+      : changeColor = isCorrect ? Colors.lightGreenAccent : Colors.redAccent;
 
   @override
-  _QuizOptionWidgetState createState() => _QuizOptionWidgetState(onTapFn: this.onTapFn);
-
+  _QuizOptionWidgetState createState() =>
+      _QuizOptionWidgetState(onTapFn: onTapFn);
 }
 
 class _QuizOptionWidgetState extends State<QuizOptionWidget> {
@@ -26,7 +27,7 @@ class _QuizOptionWidgetState extends State<QuizOptionWidget> {
 
   _QuizOptionWidgetState({required this.onTapFn});
 
-  void onTap(){
+  void onTap() {
     setState(() {
       isPressed = true;
     });
@@ -38,18 +39,19 @@ class _QuizOptionWidgetState extends State<QuizOptionWidget> {
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
-        primary: isPressed ? widget.changeColor : widget.baseColor,
+        backgroundColor: isPressed ? widget.changeColor : widget.baseColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+            borderRadius: BorderRadius.circular(20),
+            side: BorderSide(width: 6, color: const Color(0xFF002556))),
       ),
       child: Container(
-        width: 300,
-        height: 50,
+        width: 350,
+        height: 70,
         alignment: Alignment.center,
+        //color: Colors.white,
         child: Text(
           widget.text,
-          style: TextStyle(fontSize: 20, color: Colors.black),
+          style: const TextStyle(fontSize: 20, color: Colors.black),
         ),
       ),
     );

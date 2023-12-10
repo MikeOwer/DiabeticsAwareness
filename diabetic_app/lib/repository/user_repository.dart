@@ -14,10 +14,10 @@ class UserRepository {
   Future<UserModel> getUser(User? user) async {
     if(user != null){
       QuerySnapshot querySnapshot = await _firestore.collection("users")
-          .where('email', isEqualTo: '${user?.email}')
+          .where('email', isEqualTo: '${user.email}')
           .get();
       UserModel userModel = UserModel.empty();
-      querySnapshot.docs.forEach((doc) {
+      for (var doc in querySnapshot.docs) {
         userModel.setId(doc.id);
         userModel.setNames(doc.get('names'));
         userModel.setLastNameF(doc.get('lastNameF'));
@@ -28,7 +28,7 @@ class UserRepository {
         userModel.setPostalCode(doc.get('postalCode'));
         userModel.setBirthday(doc.get('birthday').toDate());
 
-      });
+      }
       return userModel;
     } else {
       throw Exception('Usuario null');

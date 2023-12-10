@@ -8,7 +8,10 @@ import '../my_classes/model/user_model.dart';
 import '../my_widgets/menu_button_widget.dart';
 
 class ConfigPage extends StatefulWidget{
+  const ConfigPage({super.key});
 
+
+  @override
   _ConfigPageState createState() => _ConfigPageState();
 }
 
@@ -39,15 +42,15 @@ class _ConfigPageState extends State<ConfigPage> {
     Future<UserModel> futureModel = userRepository.getUser(user);
     UserModel model = await futureModel;
     setState(() {
-      this.userModel = model;
-      this.fecha = userModel.getBirthdayString();
+      userModel = model;
+      fecha = userModel.getBirthdayString();
     });
   }
 
   Future<void> signOut() async {
     await Auth().signOut();
     Navigator.push(context, 
-        MaterialPageRoute(builder: (context) => HomePage())
+        MaterialPageRoute(builder: (context) => const HomePage())
     );
   }
 
@@ -108,7 +111,7 @@ class _ConfigPageState extends State<ConfigPage> {
 
   Widget _title(String title) {
     return Text(title.isEmpty? 'Titulo': title ,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 26
       ),
     );
@@ -116,7 +119,7 @@ class _ConfigPageState extends State<ConfigPage> {
 
   Widget _textFTitle(String title) {
     return Text(title.isEmpty? 'Titulo': title ,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 22
       ),
     );
@@ -125,7 +128,7 @@ class _ConfigPageState extends State<ConfigPage> {
   Widget _editButton() {
     return ElevatedButton(
         onPressed: editButtonPressed,
-        child: Text(
+        child: const Text(
             'Editar',
             style: TextStyle(
                 fontSize: 24
@@ -137,7 +140,7 @@ class _ConfigPageState extends State<ConfigPage> {
   Widget _saveButton() {
     return ElevatedButton(
         onPressed: saveButtonPressed,
-        child: Text(
+        child: const Text(
             'Guardar',
             style: TextStyle(
                 fontSize: 24
@@ -150,9 +153,9 @@ class _ConfigPageState extends State<ConfigPage> {
     return ElevatedButton(
         onPressed: cancelButtonPressed,
         style: ElevatedButton.styleFrom(
-          primary: Colors.redAccent,
+          backgroundColor: Colors.redAccent,
         ),
-      child: Text(
+      child: const Text(
           'Cancelar',
           style: TextStyle(
             fontSize: 24
@@ -164,9 +167,9 @@ class _ConfigPageState extends State<ConfigPage> {
     return ElevatedButton(
         onPressed: () => _selectDate(context),
         style: ElevatedButton.styleFrom(
-          primary: Colors.blueGrey,
+          backgroundColor: Colors.blueGrey,
         ),
-        child: Text(
+        child: const Text(
           'Elegir Fecha',
           style: TextStyle(
             fontSize: 24
@@ -177,7 +180,7 @@ class _ConfigPageState extends State<ConfigPage> {
 
   Widget _entryField(String title, String hint, TextEditingController controller, bool editable) {
     return TextField(
-      style: TextStyle(fontSize: 20),
+      style: const TextStyle(fontSize: 20),
       controller: controller,
       decoration: InputDecoration(
           labelText: title,
@@ -196,37 +199,37 @@ class _ConfigPageState extends State<ConfigPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             _textFTitle("Nombre"),
             _entryField(userModel.getNames(), 'Nombre', _nombreController, editable),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             _textFTitle("Apellido Paterno"),
             _entryField(userModel.getLastNameF(), 'Apellido Paterno', _apellidoPController, editable),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             _textFTitle("Apellido Materno"),
             _entryField(userModel.getLasNameM(), 'Apellido Materno',_apellidoMController, editable),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             _textFTitle("Teléfono Celular"),
             _entryField(userModel.getPhoneNo(),'9990000000', _telefonoController, editable),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             _textFTitle("Correo Electrónico"),
             _entryField(userModel.getEmail(), 'ejemplo@correo.com',_emailController, false),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             _textFTitle("Género"),
             _entryField(userModel.getGender(), 'H/M/Otro',_genderController, editable),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             _textFTitle("Fecha de Nacimiento"),
             _entryField(fecha, 'dd/MM/YYYY',_dateController, editable),
-            editable ? _selectDateButton(context) : SizedBox(),
-            SizedBox(height: 5,),
+            editable ? _selectDateButton(context) : const SizedBox(),
+            const SizedBox(height: 5,),
             _textFTitle("Código Postal"),
             _entryField(userModel.getPostalCode(), '97000',_postalController, editable),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                editable? _cancelButton() : SizedBox(),
-                SizedBox(width: 5,),
+                editable? _cancelButton() : const SizedBox(),
+                const SizedBox(width: 5,),
                 editable? _saveButton() : _editButton()
               ],
             )
@@ -238,7 +241,7 @@ class _ConfigPageState extends State<ConfigPage> {
   void returnToMenu(BuildContext context) {
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomePage())
+        MaterialPageRoute(builder: (context) => const HomePage())
     );
   }
 
@@ -248,10 +251,10 @@ class _ConfigPageState extends State<ConfigPage> {
       appBar: AppBar(
         title: _title("Configuración"),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => returnToMenu(context),
         ),
-        actions: [
+        actions: const [
           Padding(
             padding: EdgeInsets.only(right: 10),
             child: MenuButtonWidget(),
@@ -262,7 +265,7 @@ class _ConfigPageState extends State<ConfigPage> {
           height: MediaQuery.of(context).size.height,
           color: Colors.white60,
           child: Padding(
-            padding: EdgeInsets.only(top: 15, left: 20, right: 15),
+            padding: const EdgeInsets.only(top: 15, left: 20, right: 15),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -274,14 +277,14 @@ class _ConfigPageState extends State<ConfigPage> {
                     color: Colors.black,
                   ),
                   _infoArea(),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   _title("Inicio de Sesión"),
                   Container(
                     height: 1,
                     color: Colors.black,
                   ),
                   TextButton(onPressed: signOut,
-                    child: Text("Cerrar sesión",
+                    child: const Text("Cerrar sesión",
                       style:TextStyle(
                           fontSize: 24,
                           color: Colors.grey

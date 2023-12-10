@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import '../my_classes/progress.dart';
 
 class QuizLobbyPage extends StatefulWidget {
+  const QuizLobbyPage({super.key});
+
   @override
   State createState() => _QuizLobbyPageState();
 }
@@ -24,7 +26,7 @@ void startQuiz(BuildContext context, int level) {
 }
 
 void returnToMenu(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
 }
 
 ElevatedButton quizLevelButton(BuildContext context, int nivel) {
@@ -45,18 +47,18 @@ ElevatedButton quizLevelButton(BuildContext context, int nivel) {
 
   return ElevatedButton(
     onPressed: () => startQuiz(context, nivel),
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all<Color>(getButtonColor()),
+    ),
     child: SizedBox(
       width: 150,
       height: 70,
       child: Center(
         child: Text(
           'Nivel $nivel',
-          style: TextStyle(fontSize: 24),
+          style: const TextStyle(fontSize: 24),
         ),
       ),
-    ),
-    style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(getButtonColor()),
     ),
   );
 }
@@ -64,7 +66,7 @@ ElevatedButton quizLevelButton(BuildContext context, int nivel) {
 Widget _title(String title) {
   return Text(
     title,
-    style: TextStyle(fontSize: 36),
+    style: const TextStyle(fontSize: 36),
   );
 }
 
@@ -77,7 +79,7 @@ class _QuizLobbyPageState extends State<QuizLobbyPage> {
           title: _title('Quiz'),
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, size: 40),
+            icon: const Icon(Icons.arrow_back, size: 40),
             onPressed: () => returnToMenu(context),
           ),
         ),
@@ -86,7 +88,7 @@ class _QuizLobbyPageState extends State<QuizLobbyPage> {
             padding: const EdgeInsets.all(30),
             children: [
               _title('Selecciona un nivel:'),
-              SizedBox(
+              const SizedBox(
                 height: 80,
               ),
               Container(
@@ -97,11 +99,11 @@ class _QuizLobbyPageState extends State<QuizLobbyPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         quizLevelButton(context, 3),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         quizLevelButton(context, 2),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         quizLevelButton(context, 1),

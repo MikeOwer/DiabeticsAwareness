@@ -39,8 +39,8 @@ class Auth {
   }
 
   Future<UserCredential> signInWithFacebook() async {
-    final LoginResult _loginResult = await FacebookAuth.instance.login();
-    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(_loginResult.accessToken!.token);
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
     return _firebaseAuth.signInWithCredential(facebookAuthCredential);
   }
 
