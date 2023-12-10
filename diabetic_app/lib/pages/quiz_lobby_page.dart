@@ -15,13 +15,13 @@ class QuizLobbyPage extends StatefulWidget {
 void startQuiz(BuildContext context, int level) {
   if (level == 1) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => QuizPage(level: 1)));
+        context, MaterialPageRoute(builder: (context) => QuizPage()));
   } else if (level == 2) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => QuizPage(level: 2)));
+        context, MaterialPageRoute(builder: (context) => QuizPage()));
   } else {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => QuizPage(level: 3)));
+        context, MaterialPageRoute(builder: (context) => QuizPage()));
   }
 }
 

@@ -54,6 +54,13 @@ class NewsCard extends StatelessWidget {
     }
   }
 
+  Future<void> _launchUrl() async {
+    Uri url = Uri.parse(newsInfo.siteUrl);
+    if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
