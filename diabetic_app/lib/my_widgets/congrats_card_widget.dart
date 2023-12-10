@@ -51,38 +51,52 @@ class CongratsCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.85,
-        child: Card(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-              side: BorderSide(width: 10, color: const Color(0xFF002556))),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                const Text(
-                  "¡Felicidades!\n Completaste exitosamente el nivel. \n\n ¡Nivel 2 desbloqueado!",
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Color(0xFF002556),
+        child: SizedBox(
+      height: MediaQuery.of(context).size.height * 0.85,
+      child: Card(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: const BorderSide(width: 10, color: Color(0xFF002556))),
+        child: const Padding(
+          padding: EdgeInsets.only(top: 70),
+          child: Column(
+            children: [
+              Text(
+                "¡Felicidades!\n Completaste exitosamente el nivel.",
+                style: TextStyle(
+                  fontSize: 35,
+                  color: Color(0xFF002556),
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.check_circle,
+                    size: 60,
+                    color: Color(
+                        0xFF002556), // Puedes cambiar el color según tus preferencias
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                user != null ? _facebookButton() : const SizedBox(),
-                GestureDetector(
-                  onTap: () => goBackToQuizMenu(context),
-                  child: const Text("Regresar al menú"),
-                )
-              ],
-            ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "¡Nivel 2 desbloqueado!",
+                    style: TextStyle(
+                      fontSize: 35,
+                      color: Color(0xFF002556),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
-    );
+    ));
   }
 }
