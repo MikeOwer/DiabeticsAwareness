@@ -12,7 +12,7 @@
     },
     {
       "titulo": "30 minutos de ejercicio diario contra la diabetes",
-      "imagen": "https://www.revistadiabetes.org/wp-content/uploads/%C2%BFComo-prescribir-el-ejercicio-fisico-a-la-persona-con-diabetes1.jpg",
+      "imagen": "https://cdn.pixabay.com/photo/2017/08/06/12/52/woman-2592247_1280.jpg",
       "sitio": "https://youtu.be/nzVpQQ-P3Ms?si=ichZowVJaSlwf5ty"
     },
     {
@@ -24,6 +24,27 @@
       "titulo": "Actividad física corazón",
       "imagen": "https://canaldiabetes.com/wp-content/uploads/2016/02/o-OLDER-PEOPLE-EXERCISING-facebook.jpg",
       "sitio": "http://www.youtube.com/watch?v=T723Av2qBPQ"
+    },
+    {
+      "titulo": "Conociendo la intensidad de mi actividad física",
+      "imagen": "https://images.hola.com/imagenes/estar-bien/20201110178901/ejercicios-hiit-alta-intensidad-en-casa/0-887-435/thruster-a.jpg",
+      "sitio": "https://photos.app.goo.gl/f3VAdxrTq98VpNvq7"
+    },
+    {
+      "titulo": "Ejercicio físico y diabetes",
+      "imagen": "https://cdn.pixabay.com/photo/2020/11/24/18/19/cat-5773481_1280.jpg",
+      "sitio": "https://www.youtube.com/watch?v=CyX_lA8wFpE"
+    },
+    {
+      "titulo": "Por qué realizar actividad física",
+      "imagen": "https://www.shutterstock.com/image-vector/men-women-athletes-doing-exercises-600nw-1785411101.jpg",
+      "sitio": "https://www.youtube.com/watch?v=J5kAKCRMDT8"
+    },
+    {
+      "titulo": "Actividad física corazón",
+      "imagen": "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "sitio": "https://www.youtube.com/watch?v=T723Av2qBPQ"
     }
+
   ]
 }

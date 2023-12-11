@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: ProyectColors()
             .primaryMaterialColor, //Se utiliza el color creado para la aplicación
         scaffoldBackgroundColor: ProyectColors().backgroundColor,
-        secundaryBackgroundColor: ProyectColors().secundaryBackColor,
       ),
       home: const WidgetTree(),
     );

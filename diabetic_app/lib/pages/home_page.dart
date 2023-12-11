@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       child: Center(
         child: Text(
           'Gluconexión',
-          style: TextStyle(fontSize: 26.0, color: Colors.white),
+          style: TextStyle(fontSize: 34.0, color: Colors.white),
         ),
       ),
     );
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Widget _noticeWidget() {
+  /*Widget _noticeWidget() {
     bool logedIn = (user != null);
     return Center(
       child: Card(
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -142,13 +142,14 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(20),
         children: <Widget>[
           const Text(
-            '¿Sabías qué?',
+            'Actividades',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 28,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          if (noticeVisible) _noticeWidget(),
+          //if (noticeVisible) _noticeWidget(),
           const SizedBox(height: 20),
           // Add the newsWidgets using addAll
           ..._buildNewsList(),

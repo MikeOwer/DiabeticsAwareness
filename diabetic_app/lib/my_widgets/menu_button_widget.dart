@@ -36,7 +36,7 @@ class _MenuButtonWidgetState extends State<MenuButtonWidget> {
         context,
         MaterialPageRoute(
             builder: (context) =>
-                const QuizLobbyPage()) //Manera de entrar a el quiz rápido
+                QuizPage()) //Manera de entrar a el quiz rápido
         );
   }
   //Espacio para los demás métodos de acción de los botones restantes
@@ -58,7 +58,7 @@ class _MenuButtonWidgetState extends State<MenuButtonWidget> {
         PopupMenuItem(
           child: GestureDetector(
             onTap: () => quizButtonPressed(context),
-            child: const Text('Quiz'),
+            child: const Text('Explorando tu bienestar'),
           ),
         ),
         const PopupMenuItem(

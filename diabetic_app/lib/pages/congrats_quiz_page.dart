@@ -1,4 +1,5 @@
 import 'package:diabetic_app/controllers/quiz_controller.dart';
+import 'package:diabetic_app/my_widgets/congrats_card_widget.dart';
 import 'package:diabetic_app/pages/quiz_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,16 @@ class _CongratsQuizPageState extends State<CongratsQuizPage> {
   @override
   Widget build(BuildContext context) {
     //Pagina creada para celebrar el subir de nivel en el quiz
-    return Container(
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: Container(
+          alignment: Alignment.center,
+          child: CongratsCardWidget(),
+        ),
+      ),
+    );
+    /*Container(
       alignment: Alignment.center,
       child: ElevatedButton(
         onPressed: () {
@@ -32,7 +42,7 @@ class _CongratsQuizPageState extends State<CongratsQuizPage> {
         },
         child: Text('Pasar al siguiente nivel'),
       ),
-    );
+    );*/
   }
 
   void updateProgress() {

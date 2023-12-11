@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:math';
 
@@ -139,23 +138,30 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Nivel ${level + 1}'),
-        automaticallyImplyLeading: false,
-        // Agregar tu propio botón de retroceso
-        actions: [
-          IconButton(
-            icon: Icon(Icons.home),
-            onPressed: () {
-              // Navegar hacia atrás
-              Navigator.of(context).popUntil((route) => route.isFirst);
-            },
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          //centerTitle: true,
+          title: Text(
+            'Nivel ${level + 1}',
+            style: TextStyle(fontSize: 30),
           ),
-        ],
+          automaticallyImplyLeading: false,
+          // Agregar tu propio botón de retroceso
+          actions: [
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                // Navegar hacia atrás
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+            ),
+          ],
+        ),
+        body: _quizBackgroundLayout(),
+        backgroundColor: Color(0xFF002556),
       ),
-      body: _quizBackgroundLayout(),
-      backgroundColor: Color(0xFF002556),
     );
   }
 
@@ -166,7 +172,7 @@ class _QuizPageState extends State<QuizPage> {
 
   Widget _incorrectGIF() {
     return const Center(
-      child: Image(image: AssetImage("assets/images/incorrecto.gif")),
+      child: Image(image: AssetImage("assets/images/sigue_intentando.gif")),
     );
   }
 
@@ -176,7 +182,7 @@ class _QuizPageState extends State<QuizPage> {
       children: [
         Positioned.fill(
           child: Image.asset(
-            'assets/textures/campo.jpg',
+            'assets/textures/FondoArboles.png',
             fit: BoxFit.cover, //Para rellenar todo el fondo de la actividad
           ),
         ),
@@ -186,7 +192,7 @@ class _QuizPageState extends State<QuizPage> {
           bottom: 0,
           top: 0,
           child: Image.asset(
-            'assets/textures/textura de arbol.jpg',
+            'assets/textures/Textura_arbol2.jpg',
             fit: BoxFit.fitHeight,
           ),
         ),

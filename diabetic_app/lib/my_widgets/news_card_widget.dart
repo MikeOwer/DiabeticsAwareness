@@ -63,88 +63,92 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300, // Ancho deseado del card
-      height: 170,
-      //padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Card(
-        color: Colors.white, //Color de fondo de las tarjetas
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-            side: BorderSide(width: 6, color: const Color(0xFF002556))),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(
-              width: 15,
-            ),
-            SizedBox(
-              width: 120, // Ancho deseado del card
-              height: 120,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  newsInfo.imageUrl,
-                  fit: BoxFit.contain,
+    return GestureDetector(
+      onTap: _launchUrl,
+      child: Container(
+        width: 300, // Ancho deseado del card
+        height: 170,
+        //padding: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Card(
+          color: Colors.white, //Color de fondo de las tarjetas
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: BorderSide(width: 6, color: const Color(0xFF002556))),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(
+                width: 15,
+              ),
+              SizedBox(
+                width: 120, // Ancho deseado del card
+                height: 120,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(
+                    newsInfo.imageUrl,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Container(
-                    height: 120.0, // Establece la altura deseada
-                    child: ListTile(
-                      title: Text(
-                        newsInfo.title,
-                        maxLines:
-                            3, // Define el número máximo de líneas que se mostrarán
-                        overflow:
-                            TextOverflow.ellipsis, // Agrega puntos suspensivos
-                        textAlign: TextAlign.center,
-                        textScaleFactor: 1.5,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.0,
+              const SizedBox(
+                width: 5,
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 120.0, // Establece la altura deseada
+                      child: ListTile(
+                        contentPadding: EdgeInsets.only(top: 7),
+                        title: Text(
+                          newsInfo.title,
+                          maxLines:
+                              3, // Define el número máximo de líneas que se mostrarán
+                          overflow: TextOverflow
+                              .ellipsis, // Agrega puntos suspensivos
+                          textAlign: TextAlign.center,
+                          textScaleFactor: 1.5,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.0,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const Row(
-                    //el lenguaje pide ponerle const
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Más información",
-                        style: TextStyle(
-                          color: Color(0xFF002556),
-                          fontFamily: 'Montserrat-SemiBold.ttf',
-                          fontWeight: FontWeight.bold,
+                    const Row(
+                      //el lenguaje pide ponerle const
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "Más información",
+                          style: TextStyle(
+                            color: Color(0xFF002556),
+                            fontFamily: 'Montserrat-SemiBold.ttf',
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.arrow_forward,
-                        color: Color(0xFF002556),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      )
-                    ],
-                  ),
-                ],
+                        Icon(
+                          Icons.arrow_forward,
+                          color: Color(0xFF002556),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-          ],
+              const SizedBox(
+                width: 5,
+              ),
+            ],
+          ),
         ),
       ),
     );

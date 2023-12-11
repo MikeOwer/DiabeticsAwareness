@@ -1,5 +1,6 @@
 import 'package:diabetic_app/controllers/quiz_controller.dart';
 import 'package:diabetic_app/pages/quiz_lobby_page.dart';
+import 'package:diabetic_app/pages/quiz_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
@@ -11,7 +12,7 @@ class CongratsCardWidget extends StatelessWidget {
   QuizController quizController = QuizController.getInstance();
   int level = 0;
 
-  CongratsCardWidget({super.key, required this.level});
+  CongratsCardWidget();
 
   Future shareWithFacebook(int level) async {
     final text =
@@ -49,8 +50,9 @@ class CongratsCardWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: const BorderSide(width: 10, color: Color(0xFF002556))),
-        child: const Padding(
-          padding: EdgeInsets.only(top: 70),
+        child: Padding(
+          padding:
+              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.2),
           child: Column(
             children: [
               Text(
@@ -60,6 +62,9 @@ class CongratsCardWidget extends StatelessWidget {
                   color: Color(0xFF002556),
                 ),
                 textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -71,6 +76,9 @@ class CongratsCardWidget extends StatelessWidget {
                         0xFF002556), // Puedes cambiar el color según tus preferencias
                   ),
                 ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -84,6 +92,21 @@ class CongratsCardWidget extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => QuizPage()));
+                    },
+                    child: Text(
+                      'Continuar',
+                      style: TextStyle(fontSize: 30),
+                    )),
+              )
             ],
           ),
         ),
