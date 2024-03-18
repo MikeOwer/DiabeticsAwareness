@@ -3,7 +3,7 @@ Gluconexión.
 Créditos de Desarrollo:
 
 Contribuyentes:
-- Miguel Angel Zapata Maldonado <a18016326@alumnos.uady.mx>
+- Miguel Angel Zapata Maldonado <a18016326@alumnos.uady.mx> 9811377135
 - Luis Guillermo Toraya Novelo <a15004260@alumnos.uady.mx>
 
 Agradecimientos Especiales:
