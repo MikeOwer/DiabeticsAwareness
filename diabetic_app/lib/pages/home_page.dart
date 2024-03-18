@@ -8,6 +8,7 @@ import 'package:diabetic_app/my_widgets/menu_button_widget.dart';
 import 'package:diabetic_app/controllers/quiz_controller.dart';
 
 class HomePage extends StatefulWidget {
+  //Se visualiza las tarjetas de noticias y accesos directos
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -45,6 +46,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> _buildNewsList() {
+    //Se crea la lista de las tarjetas de las noticias.
     List<Widget> widgets = [];
     widgets.add(const ActivityCard());
     for (int i = 0; i < news.length; i++) {

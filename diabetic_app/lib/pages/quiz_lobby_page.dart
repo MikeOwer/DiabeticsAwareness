@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import '../my_classes/progress.dart';
 
 class QuizLobbyPage extends StatefulWidget {
-  const QuizLobbyPage({super.key});
+  const QuizLobbyPage(
+      {super.key}); //Fue retirado su uso por especificaciones de los requisitos. Pero se mantiene por si acaso.
 
   @override
   State createState() => _QuizLobbyPageState();
@@ -26,7 +27,8 @@ void startQuiz(BuildContext context, int level) {
 }
 
 void returnToMenu(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => const HomePage()));
 }
 
 ElevatedButton quizLevelButton(BuildContext context, int nivel) {

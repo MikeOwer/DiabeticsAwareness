@@ -76,9 +76,10 @@ class _MenuButtonWidgetState extends State<MenuButtonWidget> {
           ),
         ),
         PopupMenuItem(
-          child: user != null
-              ? menuProfileButton(context)
-              : menuLoginButton(context),
+          child: menuLoginButton(context),
+          //child: user != null
+          //  ? menuProfileButton(context)
+          //  : menuLoginButton(context),
         ),
       ],
       child: const Icon(

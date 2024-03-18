@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ProyectColors {
+  //Clase para crear los colores que se utilizarán en la aplicación.
   late MaterialColor primaryMaterialColor;
-  Color primaryColor = const Color(0xFF002556);
-  Color backgroundColor = const Color(0xFFC8E1F9);
+  Color primaryColor = const Color(0xFF002556); //Color principal
+  Color backgroundColor = const Color(0xFFC8E1F9); //Color del fondo
   Color secundaryBackColor = const Color(0xFFFFFFFF);
 
   ProyectColors() {
     primaryMaterialColor = getMaterialColor(const Color(0xFF002556));
   }
 
-  //Método para crear MAterialColor con base en el color que quieras, te general el map para las tonalidades.
+  //Método para crear MaterialColor con base en el color que quieras, te general el map para las tonalidades.
   MaterialColor getMaterialColor(Color color) {
     List strengths = <double>[.05];
     final swatch = <int, Color>{};

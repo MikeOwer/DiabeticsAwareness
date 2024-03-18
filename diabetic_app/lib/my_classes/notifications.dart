@@ -8,28 +8,27 @@ Future<void> handleBackgroundMessage(RemoteMessage message) async {
   print('Payload: ${message.data}');
 }
 
+//No se programaron notificaciones con Firebase por lo que se debe modificar a conveniencia.
+
 class Notifications {
   final User? user = Auth().currentUser;
   final firebaseMessaging = FirebaseMessaging.instance;
 
   Future<void> initNotifications() async {
     await firebaseMessaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true
-    );
+        alert: true,
+        announcement: false,
+        badge: true,
+        carPlay: false,
+        criticalAlert: false,
+        provisional: false,
+        sound: true);
     final fCMToken = await firebaseMessaging.getToken();
     //print('Token: $fCMToken');
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
   }
 
   void saveToken(String token) async {
-    if(user != null){
-
-    }
+    if (user != null) {}
   }
 }

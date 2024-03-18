@@ -30,12 +30,13 @@ class Progress {
   }
 
   void increaseMaxLevel() {
-    if (this.maxLevel < 2) {
-      //Debe ser 3, pero se dejó en 2 para que no se incluya el nivel 3
+    if (this.maxLevel < 3) {
       this.maxLevel = this.maxLevel! + 1;
     }
   }
 
+  //Los iba a tomar como contadores para el reseteo de los niveles
+  //en caso de que no entre el usuario
   void increaseHealthyLevels() {
     if (this.healthyLevels < 3) {
       this.healthyLevels = this.healthyLevels! + 1;
@@ -44,13 +45,18 @@ class Progress {
 
   void increaseCurrentQuestion() {
     //Se aumenta el número de pregunta actual
-    if (this.maxLevel < 2) {
-      //limitado en los primeros dos niveles
+    if (this.maxLevel < 3) {
       if (this.currentQuestion < 5) {
         this.currentQuestion += 1;
       }
     } else {
       this.currentQuestion += 1;
+    }
+  }
+
+  void decreaseLevels() {
+    if (this.maxLevel > 0) {
+      this.maxLevel = this.maxLevel - 1;
     }
   }
 

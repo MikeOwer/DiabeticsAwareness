@@ -8,6 +8,7 @@ import 'package:share_plus/share_plus.dart';
 import '../my_classes/auth.dart';
 
 class CongratsCardWidget extends StatelessWidget {
+  //Tarjeta para pasar al siguiente nivel
   final User? user = Auth().currentUser;
   QuizController quizController = QuizController.getInstance();
   int level = 0;

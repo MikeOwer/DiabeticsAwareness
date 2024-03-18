@@ -2,7 +2,8 @@ import 'package:diabetic_app/pages/quiz_page.dart';
 import 'package:flutter/material.dart';
 
 class ActivityCard extends StatelessWidget {
-  const ActivityCard({super.key});
+  const ActivityCard(
+      {super.key}); //Tarjeta creada para acceso directo con la actividad.
 
   @override
   Widget build(BuildContext context) {

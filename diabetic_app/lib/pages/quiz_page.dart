@@ -9,9 +9,9 @@ import 'package:diabetic_app/pages/congrats_quiz_page.dart';
 import 'package:flutter/material.dart';
 import 'package:diabetic_app/controllers/quiz_controller.dart';
 
-class QuizPage extends StatefulWidget {
-  //int level = 0;
+//Clase para visualizar la pantalla de la actividad
 
+class QuizPage extends StatefulWidget {
   @override
   _QuizPageState createState() => _QuizPageState();
 
@@ -32,7 +32,7 @@ class _QuizPageState extends State<QuizPage> {
   bool correctSelected = false;
   bool incorrectSelected = false;
 
-  _QuizPageState(); //Quitar el pedir niveles
+  _QuizPageState();
 
   @override
   void initState() {
@@ -45,8 +45,8 @@ class _QuizPageState extends State<QuizPage> {
 
     _stageController.stream.listen((stage) {
       //Si cambia el stage a 5 se va a la otra pantalla
-      if (stage == 5 && quizController.quizProgress.getMaxLevel() < 1) {
-        //Limitación temporal de nivel 2
+      if (stage == 5 && quizController.quizProgress.getMaxLevel() < 2) {
+        //Limitación al nivel 3
         completeLevel();
       }
     });
@@ -145,7 +145,7 @@ class _QuizPageState extends State<QuizPage> {
           //centerTitle: true,
           title: Text(
             'Nivel ${level + 1}',
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 34),
           ),
           automaticallyImplyLeading: false,
           // Agregar tu propio botón de retroceso
@@ -181,12 +181,14 @@ class _QuizPageState extends State<QuizPage> {
       //Trabaja como un espacio para acomodar widgets
       children: [
         Positioned.fill(
+          //Fondo del quiz
           child: Image.asset(
             'assets/textures/FondoArboles.png',
             fit: BoxFit.cover, //Para rellenar todo el fondo de la actividad
           ),
         ),
         Positioned(
+          //Imagen del tronco del árbol
           left: 125,
           right: 125,
           bottom: 0,
@@ -197,6 +199,7 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         Positioned(
+          //Los botones de las preguntas
           left: 125,
           right: 125,
           bottom: 0,
@@ -253,7 +256,8 @@ class _QuizPageState extends State<QuizPage> {
               //decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
               alignment: Alignment.centerLeft,
               child: quizController.quizProgress.currentQuestion == i
-                  ? Image.asset('assets/images/Tolok.png')
+                  ? Image.asset(
+                      'assets/images/Tolok.png') //Se modifica la imagen del tolok
                   : null,
             ),
           ),
@@ -311,6 +315,9 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Widget _buildPrimerElemento() {
+    //Tarjeta de la pregunta 1
+    double screenWidth = MediaQuery.of(context).size.width;
+    double fontSizePercentage = screenWidth * 0.05;
     return Container(
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.06,
@@ -325,9 +332,10 @@ class _QuizPageState extends State<QuizPage> {
           onPressed: () {
             _toggleCardVisibility();
           },
-          child: const Text(
+          child: Text(
             'Pregunta 1',
-            style: TextStyle(fontSize: 24, color: Colors.white),
+            style: TextStyle(
+                fontSize: fontSizePercentage, color: Colors.white), //Tenía 24
           ),
         ),
       ),
@@ -335,6 +343,7 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Color setButtonColor(int numQuestion, int numButton) {
+    //Cambio del color de los botones de preguntas
     if (numButton <= numQuestion) {
       return Theme.of(context).primaryColor;
     }
@@ -342,11 +351,14 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Text setTextButton(int numQuestion, int numButton) {
+    //Cambio del color del texto de los botones de preguntas
+    double screenWidth = MediaQuery.of(context).size.width;
+    double fontSizePercentage = screenWidth * 0.05;
     if (numButton <= numQuestion) {
       return Text('Pregunta ${numButton + 1}',
-          style: TextStyle(fontSize: 24, color: Colors.white));
+          style: TextStyle(fontSize: fontSizePercentage, color: Colors.white));
     }
     return Text('Pregunta ${numButton + 1}',
-        style: TextStyle(fontSize: 24, color: Colors.black));
+        style: TextStyle(fontSize: fontSizePercentage, color: Colors.black));
   }
 }

@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+//Se maneja API en Django, por lo que esto ya no es necesario.
+//Eliminar esta clase a conveniencia.
 class Auth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final UserRepository userRepository = UserRepository();
@@ -17,8 +19,8 @@ class Auth {
     required String password,
   }) async {
     await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
+      email: email,
+      password: password,
     );
   }
 
@@ -27,8 +29,8 @@ class Auth {
     required String password,
   }) async {
     await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+      email: email,
+      password: password,
     );
     UserModel userModel = UserModel(email: email);
     userRepository.createUser(userModel);
@@ -40,13 +42,15 @@ class Auth {
 
   Future<UserCredential> signInWithFacebook() async {
     final LoginResult loginResult = await FacebookAuth.instance.login();
-    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.token);
     return _firebaseAuth.signInWithCredential(facebookAuthCredential);
   }
 
   Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
@@ -54,5 +58,4 @@ class Auth {
 
     return await _firebaseAuth.signInWithCredential(credential);
   }
-
 }
